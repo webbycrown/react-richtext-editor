@@ -1,0 +1,39 @@
+{
+  "name": "rich-text-editor",
+  "version": "1.0.0",
+  "description": "A simple rich text editor React component.",
+  "main": "dist/rich-text-editor.cjs.js",
+  "module": "dist/rich-text-editor.esm.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "react": "^16 || ^17 || ^18 || ^19"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.5",
+    "@babel/preset-env": "^7.28.5",
+    "@babel/preset-react": "^7.28.5",
+    "@rollup/plugin-babel": "^6.1.0",
+    "@rollup/plugin-commonjs": "^28.0.9",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "rollup": "^2.79.2",
+    "rollup-plugin-css-only": "^4.5.5",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-terser": "^7.0.2"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^7.1.0",
+    "@fortawesome/free-solid-svg-icons": "^7.1.0",
+    "@fortawesome/react-fontawesome": "^3.1.0",
+    "dompurify": "^3.3.0",
+    "emoji-picker-react": "^4.15.0",
+    "marked": "^16.4.1",
+    "react-avatar-editor": "^13.0.2",
+    "react-icons": "^5.5.0"
+  }
+}
