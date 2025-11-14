@@ -1,31 +1,9 @@
-<<<<<<< HEAD
+
 # 📦 React Richtext Editor - React Component
 
 A powerful, feature-rich, and customizable react richtext editor built for React applications. This editor provides a wide range of formatting options, plugin support, and security features including HTML sanitization.
 
----
 
-## 📋 Table of Contents
-
-- [Installation](#-installation)
-- [Quick Start](#-quick-start)
-- [Basic Usage](#-basic-usage)
-- [Props API](#-props-api)
-- [Features](#-features)
-  - [Core Features](#core-features)
-  - [Security Features](#security-features)
-  - [Customization Options](#customization-options)
-- [Plugins](#-plugins)
-  - [Plugin Types](#plugin-types)
-  - [Plugin Examples](#plugin-examples)
-- [Theming](#-theming)
-- [Examples](#-examples)
-  - [Basic Editor](#basic-editor)
-  - [Editor with Restricted Tags](#editor-with-restricted-tags)
-  - [Editor with Custom Plugins](#editor-with-custom-plugins)
-  - [Form Integration](#form-integration)
-
----
 
 ## 📦 Installation
 
@@ -589,8 +567,3 @@ This project is open source and available under the MIT License.
 <div align="center">
 <strong>Made with ❤️ by <a href="https://webbycrown.com">WebbyCrown</a></strong>
 </div>
-
-=======
-# react-richtext-editor
-A powerful, feature-rich, and customizable react richtext editor built for React applications. This editor provides a wide range of formatting options, plugin support, and security features including HTML sanitization.
->>>>>>> 4c2eeb941e3777229765d4282cc9e6891574f4d6

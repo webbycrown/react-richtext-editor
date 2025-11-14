@@ -1,9 +1,9 @@
 {
-  "name": "rich-text-editor",
+  "name": "react-richtext-editor",
   "version": "1.0.0",
   "description": "A simple rich text editor React component.",
-  "main": "dist/rich-text-editor.cjs.js",
-  "module": "dist/rich-text-editor.esm.js",
+  "main": "dist/react-richtext-editor.cjs.js",
+  "module": "dist/react-richtext-editor.esm.js",
   "files": [
     "dist"
   ],

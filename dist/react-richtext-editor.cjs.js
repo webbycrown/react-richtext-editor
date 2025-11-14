@@ -16693,4 +16693,4 @@ function Editor(_ref3) {
 
 exports.Editor = Editor;
 exports["default"] = Editor;
-//# sourceMappingURL=rich-text-editor.cjs.js.map
+//# sourceMappingURL=react-richtext-editor.cjs.js.map

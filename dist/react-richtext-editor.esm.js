@@ -16684,4 +16684,4 @@ function Editor(_ref3) {
 }
 
 export { Editor, Editor as default };
-//# sourceMappingURL=rich-text-editor.esm.js.map
+//# sourceMappingURL=react-richtext-editor.esm.js.map
