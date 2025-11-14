@@ -4,7 +4,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import css from "rollup-plugin-css-only";
 
 export default {
-  input: "dist/index.js",
+  input: "src/index.js",
   output: [
     {
       file: "dist/react-richtext-editor.esm.js",

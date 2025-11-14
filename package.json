@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "build": "rollup -c",
-    "prepublishOnly": "echo 'dist already built!'"
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
     "react": "^18.3.1"
