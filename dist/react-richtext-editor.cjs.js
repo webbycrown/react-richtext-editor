@@ -14976,6 +14976,8 @@ function Editor(_ref3) {
   var savedTableSelectionRef = React.useRef(null);
   var savedEmojiSelectionRef = React.useRef(null);
   var isSettingContent = React.useRef(false);
+  var lastValueRef = React.useRef(value);
+  var lastHtmlRef = React.useRef("");
 
   // Initialize theme from localStorage after mount (client-side only)
   React.useEffect(function () {
@@ -15088,27 +15090,24 @@ function Editor(_ref3) {
     }
   }, [focused]);
 
-  // Update active formatting after content changes
+  // Update active formatting after content changes (only when not setting content programmatically)
   React.useEffect(function () {
-    updateActiveFormatting();
+    if (!isSettingContent.current) {
+      updateActiveFormatting();
+    }
   }, [value]);
   React.useEffect(function () {
     if (!storageKey) return;
     try {
-      var savedContent = localStorage.getItem("".concat(storageKey, "-content"));
-      if (savedContent && !value) {
-        setTimeout(function () {
-          if (editorRef.current) {
-            editorRef.current.innerHTML = savedContent;
-          }
-        }, 0);
-      }
       var savedTags = localStorage.getItem("".concat(storageKey, "-allowedTags"));
       if (savedTags) {
         try {
           var parsedTags = JSON.parse(savedTags);
           if (Array.isArray(parsedTags) && parsedTags.length > 0) {
-            setAllowedTags(parsedTags);
+            // Only use saved tags if propAllowedTags is not provided
+            if (!propAllowedTags) {
+              setAllowedTags(parsedTags);
+            }
           }
         } catch (e) {
           console.error('Error parsing saved allowed tags:', e);
@@ -15117,16 +15116,39 @@ function Editor(_ref3) {
     } catch (e) {
       console.error('Error accessing localStorage:', e);
     }
-  }, [storageKey, value]);
+  }, [storageKey, propAllowedTags]);
 
-  // Memoize the effect dependencies to prevent unnecessary updates
+  // Sync allowedTags with propAllowedTags when it changes
   React.useEffect(function () {
     if (propAllowedTags && Array.isArray(propAllowedTags)) {
       // Merge propAllowedTags with pluginTags
       var mergedTags = _toConsumableArray(new Set([].concat(_toConsumableArray(propAllowedTags), _toConsumableArray(pluginTags))));
-      setAllowedTags(mergedTags);
+      // Only update if it's actually different to avoid unnecessary re-renders
+      setAllowedTags(function (prevTags) {
+        var prevSet = new Set(prevTags);
+        var newSet = new Set(mergedTags);
+        if (prevSet.size !== newSet.size || !mergedTags.every(function (tag) {
+          return prevSet.has(tag);
+        })) {
+          return mergedTags;
+        }
+        return prevTags;
+      });
     }
+    // If propAllowedTags is null/undefined, keep the current state (don't reset to defaults)
+    // This allows the TagSelector to work independently when no prop is provided
   }, [propAllowedTags, pluginTags]);
+
+  //handle change function
+  //this function is used to handle the change in the editor
+  //it is used to sanitize the html and update the content
+  //it is used to update the active formatting
+  //it is used to update the last html
+  //it is used to update the last value
+  //it is used to update the preview content
+  //it is used to update the selection
+  //it is used to update the saved range
+  //it is used to update the saved selection
   var handleChange = function handleChange() {
     if (isSettingContent.current) return;
     if (!editorRef.current) return;
@@ -15136,6 +15158,11 @@ function Editor(_ref3) {
       savedRange = selection.getRangeAt(0).cloneRange();
     }
     var html = editorRef.current.innerHTML;
+
+    // Check if the content has actually changed
+    if (html === lastHtmlRef.current) {
+      return;
+    }
     if (!containsOnlyAllowedTags(html, allowedTags)) {
       html = sanitizeHTML(html, allowedTags);
       if (editorRef.current.innerHTML !== html) {
@@ -15154,12 +15181,10 @@ function Editor(_ref3) {
         }
       }
     }
+
+    // Update the ref to the new HTML
+    lastHtmlRef.current = html;
     onChange === null || onChange === void 0 || onChange(html);
-    try {
-      localStorage.setItem("".concat(storageKey, "-content"), html);
-    } catch (e) {
-      console.error('Error saving content to localStorage:', e);
-    }
 
     // Update active formatting after content change
     updateActiveFormatting();
@@ -15198,15 +15223,6 @@ function Editor(_ref3) {
     handleChange();
   };
   React.useEffect(function () {
-    if (editorRef.current) {
-      try {
-        localStorage.setItem("".concat(storageKey, "-content"), editorRef.current.innerHTML);
-      } catch (e) {
-        console.error('Error saving content to localStorage:', e);
-      }
-    }
-  }, [value, storageKey]);
-  React.useEffect(function () {
     if (!storageKey) return;
     try {
       localStorage.setItem("".concat(storageKey, "-allowedTags"), JSON.stringify(allowedTags));
@@ -15214,18 +15230,38 @@ function Editor(_ref3) {
       console.error('Error saving allowed tags to localStorage:', e);
     }
   }, [allowedTags, storageKey]);
+
+  // Update the useEffect that handles value changes
   React.useEffect(function () {
     if (editorRef.current && value !== undefined) {
       var sanitizedValue = sanitizeHTML(value, allowedTags);
-      if (editorRef.current.innerHTML !== sanitizedValue) {
-        isSettingContent.current = true;
-        try {
-          editorRef.current.innerHTML = sanitizedValue;
-          if (isPreview) {
-            setPreviewContent(sanitizedValue);
+
+      // Only update if the value prop actually changed (not just a re-render)
+      if (value !== lastValueRef.current) {
+        // Only update if the content has actually changed
+        if (editorRef.current.innerHTML !== sanitizedValue) {
+          isSettingContent.current = true;
+          try {
+            editorRef.current.innerHTML = sanitizedValue;
+            // Update both refs to prevent onChange from firing
+            lastValueRef.current = value;
+            lastHtmlRef.current = sanitizedValue;
+
+            // Also update preview content if we're in preview mode
+            if (isPreview) {
+              setPreviewContent(sanitizedValue);
+            }
+          } finally {
+            // Use setTimeout to ensure the flag stays true long enough
+            // to catch any async events that might fire
+            setTimeout(function () {
+              isSettingContent.current = false;
+            }, 0);
           }
-        } finally {
-          isSettingContent.current = false;
+        } else {
+          // Even if HTML didn't change, update the refs to match
+          lastValueRef.current = value;
+          lastHtmlRef.current = sanitizedValue;
         }
       }
     }
