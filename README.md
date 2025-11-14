@@ -1,6 +1,7 @@
-# 📦 Rich Text Editor - React Component
+<<<<<<< HEAD
+# 📦 React Richtext Editor - React Component
 
-A powerful, feature-rich, and customizable rich text editor built for React applications. This editor provides a wide range of formatting options, plugin support, and security features including HTML sanitization.
+A powerful, feature-rich, and customizable react richtext editor built for React applications. This editor provides a wide range of formatting options, plugin support, and security features including HTML sanitization.
 
 ---
 
@@ -31,13 +32,13 @@ A powerful, feature-rich, and customizable rich text editor built for React appl
 Install the package using npm or yarn:
 
 ```bash
-npm install rich-text-editor
+npm install react-richtext-editor
 ```
 
 or
 
 ```bash
-yarn add rich-text-editor
+yarn add react-richtext-editor
 ```
 
 ---
@@ -46,8 +47,8 @@ yarn add rich-text-editor
 
 ```jsx
 import React, { useState } from 'react';
-import Editor from 'rich-text-editor';
-import 'rich-text-editor/dist/styles.css';
+import Editor from 'react-richtext-editor';
+import 'react-richtext-editor/dist/styles.css';
 
 function App() {
   const [content, setContent] = useState('');
@@ -76,8 +77,8 @@ The editor is a controlled component that requires `value` and `onChange` props:
 
 ```jsx
 import React, { useState } from 'react';
-import Editor from 'rich-text-editor';
-import 'rich-text-editor/dist/styles.css';
+import Editor from 'react-richtext-editor';
+import 'react-richtext-editor/dist/styles.css';
 
 function MyComponent() {
   const [content, setContent] = useState('');
@@ -374,8 +375,8 @@ The theme is automatically managed by the editor. Users can toggle between light
 
 ```jsx
 import React, { useState } from 'react';
-import Editor from 'rich-text-editor';
-import 'rich-text-editor/dist/styles.css';
+import Editor from 'react-richtext-editor';
+import 'react-richtext-editor/dist/styles.css';
 
 function BasicEditor() {
   const [content, setContent] = useState('');
@@ -402,8 +403,8 @@ function BasicEditor() {
 
 ```jsx
 import React, { useState } from 'react';
-import Editor from 'rich-text-editor';
-import 'rich-text-editor/dist/styles.css';
+import Editor from 'react-richtext-editor';
+import 'react-richtext-editor/dist/styles.css';
 
 function RestrictedEditor() {
   const [content, setContent] = useState('');
@@ -430,8 +431,8 @@ function RestrictedEditor() {
 
 ```jsx
 import React, { useState } from 'react';
-import Editor from 'rich-text-editor';
-import 'rich-text-editor/dist/styles.css';
+import Editor from 'react-richtext-editor';
+import 'react-richtext-editor/dist/styles.css';
 import { FaHighlighter, FaClock } from 'react-icons/fa';
 
 function CustomPluginEditor() {
@@ -467,8 +468,8 @@ function CustomPluginEditor() {
 
 ```jsx
 import React, { useState } from 'react';
-import Editor from 'rich-text-editor';
-import 'rich-text-editor/dist/styles.css';
+import Editor from 'react-richtext-editor';
+import 'react-richtext-editor/dist/styles.css';
 
 function FormWithEditor() {
   const [formData, setFormData] = useState({
@@ -585,4 +586,11 @@ This project is open source and available under the MIT License.
 
 ---
 
-**Happy Editing! 🎉**
+<div align="center">
+<strong>Made with ❤️ by <a href="https://webbycrown.com">WebbyCrown</a></strong>
+</div>
+
+=======
+# react-richtext-editor
+A powerful, feature-rich, and customizable react richtext editor built for React applications. This editor provides a wide range of formatting options, plugin support, and security features including HTML sanitization.
+>>>>>>> 4c2eeb941e3777229765d4282cc9e6891574f4d6
