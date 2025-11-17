@@ -14987,9 +14987,8 @@ function Editor(_ref3) {
       if (savedTheme === 'dark' || savedTheme === 'light') {
         setTheme(savedTheme);
       } else {
-        // Fallback to system preference if no saved theme
-        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        setTheme(prefersDark ? 'dark' : 'light');
+        // Default to light theme
+        setTheme('light');
       }
     } catch (e) {
       console.error('Error reading theme from localStorage:', e);
