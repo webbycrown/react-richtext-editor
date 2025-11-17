@@ -17,7 +17,7 @@
 
 .rte-container.fixed-height {
   height: 500px;
-} 
+}
 
 .rte-toolbar {
   display: flex;
@@ -712,17 +712,39 @@
 }
 
 /* Preview mode styles */
-.rte-preview h1, .rte-preview h2, .rte-preview h3, .rte-preview h4, .rte-preview h5, .rte-preview h6 {
+.rte-preview h1,
+.rte-preview h2,
+.rte-preview h3,
+.rte-preview h4,
+.rte-preview h5,
+.rte-preview h6 {
   font-weight: bold;
   margin: 0.5em 0;
 }
 
-.rte-preview h1 { font-size: 2em; }
-.rte-preview h2 { font-size: 1.5em; }
-.rte-preview h3 { font-size: 1.17em; }
-.rte-preview h4 { font-size: 1em; }
-.rte-preview h5 { font-size: 0.83em; }
-.rte-preview h6 { font-size: 0.67em; }
+.rte-preview h1 {
+  font-size: 2em;
+}
+
+.rte-preview h2 {
+  font-size: 1.5em;
+}
+
+.rte-preview h3 {
+  font-size: 1.17em;
+}
+
+.rte-preview h4 {
+  font-size: 1em;
+}
+
+.rte-preview h5 {
+  font-size: 0.83em;
+}
+
+.rte-preview h6 {
+  font-size: 0.67em;
+}
 
 .rte-preview blockquote {
   display: block;
@@ -733,7 +755,8 @@
   background-color: #f9f9f9;
 }
 
-.rte-preview ul, .rte-preview ol {
+.rte-preview ul,
+.rte-preview ol {
   margin: 1em 0;
   padding-left: 2em;
 }
@@ -1096,6 +1119,7 @@
   border-color: #cfe2ff;
   background: #e7f1ff;
 }
+
 /* Light theme (default) */
 .rte-container.rte-theme-light {
   background-color: #ffffff;
@@ -1129,6 +1153,11 @@
   border: 1px solid #e0e0e0 !important;
 }
 
+.rte-container.rte-theme-light .tag-selector-popup{
+  background-color: #ffffff !important;
+  color: #333333 !important;
+  border: 1px solid #e0e0e0 !important;
+}
 /* Dark theme */
 .rte-container.rte-theme-dark {
   background-color: #2d2d2d;
@@ -1155,9 +1184,14 @@
 .rte-container.rte-theme-dark .tag-selector-popup,
 .rte-container.rte-theme-dark .table-grid-popup,
 .rte-container.rte-theme-dark .emoji-picker-popup,
-.rte-container.rte-theme-dark .image-editor-modal,
-.rte-container.rte-theme-dark .search-bar {
+.rte-container.rte-theme-dark .search-bar .rte-container.rte-theme-dark .image-editor-modal {
   background-color: #3d3d3d66 !important;
+  color: #f0f0f0;
+  border: 1px solid #4d4d4d !important;
+}
+
+.rte-container.rte-theme-dark .tag-selector-popup {
+  background-color: #3d3d3d !important;
   color: #f0f0f0;
   border: 1px solid #4d4d4d !important;
 }
