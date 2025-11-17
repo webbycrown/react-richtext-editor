@@ -14349,9 +14349,9 @@ var TagSelector = function TagSelector(_ref) {
   var allowedTags = _ref.allowedTags,
     setAllowedTags = _ref.setAllowedTags,
     showTagSelector = _ref.showTagSelector,
-    setShowTagSelector = _ref.setShowTagSelector,
-    theme = _ref.theme,
-    allTags = _ref.allTags;
+    setShowTagSelector = _ref.setShowTagSelector;
+    _ref.theme;
+    var allTags = _ref.allTags;
   var _useState = useState('all'),
     _useState2 = _slicedToArray(_useState, 2),
     filterMode = _useState2[0],
@@ -14397,7 +14397,7 @@ var TagSelector = function TagSelector(_ref) {
     },
     title: "Configure allowed HTML tags"
   }, /*#__PURE__*/React.createElement(FaCog, null)), showTagSelector && /*#__PURE__*/React.createElement("div", {
-    className: "tag-selector-popup ".concat(theme)
+    className: "tag-selector-popup"
   }, /*#__PURE__*/React.createElement("div", {
     className: "tag-selector-header"
   }, /*#__PURE__*/React.createElement("h3", null, "Allowed HTML Tags & Actions"), /*#__PURE__*/React.createElement("div", {
@@ -14490,8 +14490,8 @@ var Dropdown = function Dropdown(_ref2) {
     placeholder = _ref2.placeholder,
     icon = _ref2.icon,
     _ref2$width = _ref2.width,
-    width = _ref2$width === void 0 ? "120px" : _ref2$width,
-    theme = _ref2.theme;
+    width = _ref2$width === void 0 ? "120px" : _ref2$width;
+    _ref2.theme;
   var _useState3 = useState(false),
     _useState4 = _slicedToArray(_useState3, 2),
     isOpen = _useState4[0],
@@ -14537,7 +14537,7 @@ var Dropdown = function Dropdown(_ref2) {
   }, getDisplayLabel()), /*#__PURE__*/React.createElement(FaCaretDown, {
     className: "rte-dropdown-arrow"
   })), isOpen && /*#__PURE__*/React.createElement("div", {
-    className: "rte-dropdown-menu ".concat(theme),
+    className: "rte-dropdown-menu",
     style: {
       width: width
     }
@@ -14998,28 +14998,6 @@ function Editor(_ref3) {
     }
   }, [theme, mounted]);
 
-  // Add this useEffect to apply theme to document body (only after mount)
-  useEffect(function () {
-    if (mounted) {
-      document.body.className = theme;
-    }
-  }, [theme, mounted]);
-
-  // Add this useEffect to listen for system theme changes
-  useEffect(function () {
-    var mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    var handleChange = function handleChange(e) {
-      // Only change if user hasn't manually set a preference
-      if (!localStorage.getItem(GLOBAL_THEME_KEY)) {
-        setTheme(e.matches ? 'dark' : 'light');
-      }
-    };
-    mediaQuery.addEventListener('change', handleChange);
-    return function () {
-      mediaQuery.removeEventListener('change', handleChange);
-    };
-  }, []);
-
   // Toggle theme function
   var toggleTheme = function toggleTheme() {
     setTheme(function (prevTheme) {
@@ -15131,15 +15109,6 @@ function Editor(_ref3) {
   }, [propAllowedTags, pluginTags]);
 
   //handle change function
-  //this function is used to handle the change in the editor
-  //it is used to sanitize the html and update the content
-  //it is used to update the active formatting
-  //it is used to update the last html
-  //it is used to update the last value
-  //it is used to update the preview content
-  //it is used to update the selection
-  //it is used to update the saved range
-  //it is used to update the saved selection
   var handleChange = function handleChange() {
     if (isSettingContent.current) return;
     if (!editorRef.current) return;
@@ -16295,7 +16264,7 @@ function Editor(_ref3) {
   };
   return /*#__PURE__*/React.createElement("div", {
     ref: editorContainerRef,
-    className: "rte-container ".concat(focused ? "rte-focused" : "", " ").concat(height === "auto" ? "" : height === "responsive" ? "" : typeof height === "number" ? "fixed-height" : "", " ").concat(width === "auto" ? "" : width === "responsive" ? "" : typeof width === "number" ? "fixed-width" : "", " ").concat(className, " theme-").concat(theme),
+    className: "rte-container ".concat(focused ? "rte-focused" : "", " ").concat(height === "auto" ? "" : height === "responsive" ? "" : typeof height === "number" ? "fixed-height" : "", " ").concat(width === "auto" ? "" : width === "responsive" ? "" : typeof width === "number" ? "fixed-width" : "", " ").concat(className, " rte-theme-").concat(theme),
     style: _objectSpread2(_objectSpread2(_objectSpread2({}, typeof height === "number" ? {
       height: "".concat(height, "px")
     } : {}), typeof width === "number" ? {
@@ -16304,7 +16273,7 @@ function Editor(_ref3) {
       minHeight: "".concat(minHeight, "px")
     })
   }, showImageEditor && /*#__PURE__*/React.createElement("div", {
-    className: "image-editor-modal ".concat(theme)
+    className: "image-editor-modal"
   }, /*#__PURE__*/React.createElement("div", {
     className: "image-editor-content"
   }, /*#__PURE__*/React.createElement("div", {
@@ -16432,7 +16401,7 @@ function Editor(_ref3) {
     onClick: removeImage,
     className: "remove-btn"
   }, "Remove Image")))), /*#__PURE__*/React.createElement("div", {
-    className: "rte-toolbar ".concat(theme)
+    className: "rte-toolbar"
   }, toolbarButtons.map(function (b, i) {
     if (b.type === "dropdown") {
       var filteredOptions = b.options.filter(function (opt) {
@@ -16466,7 +16435,7 @@ function Editor(_ref3) {
         },
         title: b.tooltip
       }, b.icon), showTableGrid && /*#__PURE__*/React.createElement("div", {
-        className: "table-grid-popup ".concat(theme),
+        className: "table-grid-popup",
         onMouseLeave: function onMouseLeave() {
           return setShowTableGrid(false);
         }
@@ -16516,7 +16485,7 @@ function Editor(_ref3) {
         },
         title: b.tooltip
       }, b.icon), showEmojiPicker && /*#__PURE__*/React.createElement("div", {
-        className: "emoji-picker-popup ".concat(theme)
+        className: "emoji-picker-popup"
       }, /*#__PURE__*/React.createElement(EmojiPicker$1, {
         theme: theme === 'dark' ? 'dark' : 'light',
         onEmojiClick: function onEmojiClick(emojiData) {
@@ -16644,7 +16613,7 @@ function Editor(_ref3) {
     },
     title: isPreview ? "Switch to Edit Mode" : "Switch to Preview Mode"
   }, isPreview ? /*#__PURE__*/React.createElement(FaEdit, null) : /*#__PURE__*/React.createElement(FaEye, null))), plugins.length > 0 && /*#__PURE__*/React.createElement("div", {
-    className: "rte-toolbar rte-toolbar-plugins ".concat(theme)
+    className: "rte-toolbar rte-toolbar-plugins"
   }, plugins.map(function (plugin, index) {
     if (!shouldShowPlugin(plugin)) {
       return null;
@@ -16662,7 +16631,7 @@ function Editor(_ref3) {
       }
     }, typeof plugin.icon === 'string' ? plugin.icon : plugin.icon);
   })), showSearch && /*#__PURE__*/React.createElement("div", {
-    className: "search-bar ".concat(theme)
+    className: "search-bar"
   }, /*#__PURE__*/React.createElement("input", {
     type: "text",
     className: "search-input",
@@ -16699,7 +16668,7 @@ function Editor(_ref3) {
     onChange: handleFileChange
   }), !isPreview ? /*#__PURE__*/React.createElement("div", {
     ref: editorRef,
-    className: "rte-editor ".concat(theme),
+    className: "rte-editor",
     contentEditable: true,
     suppressContentEditableWarning: true,
     onInput: handleChange,
@@ -16710,7 +16679,7 @@ function Editor(_ref3) {
       return setFocused(false);
     }
   }) : /*#__PURE__*/React.createElement("div", {
-    className: "rte-preview ".concat(theme)
+    className: "rte-preview"
   }, /*#__PURE__*/React.createElement("div", {
     dangerouslySetInnerHTML: {
       __html: previewContent ? sanitizeHTML(previewContent, allowedTags) : ""
