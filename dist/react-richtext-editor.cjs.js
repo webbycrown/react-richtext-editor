@@ -14357,9 +14357,8 @@ var TagSelector = function TagSelector(_ref) {
   var allowedTags = _ref.allowedTags,
     setAllowedTags = _ref.setAllowedTags,
     showTagSelector = _ref.showTagSelector,
-    setShowTagSelector = _ref.setShowTagSelector;
-    _ref.theme;
-    var allTags = _ref.allTags;
+    setShowTagSelector = _ref.setShowTagSelector,
+    allTags = _ref.allTags;
   var _useState = React.useState('all'),
     _useState2 = _slicedToArray(_useState, 2),
     filterMode = _useState2[0],
@@ -14372,12 +14371,6 @@ var TagSelector = function TagSelector(_ref) {
     } else {
       setAllowedTags([].concat(_toConsumableArray(allowedTags), [tag]));
     }
-  };
-  var selectAll = function selectAll() {
-    setAllowedTags(_toConsumableArray(allTags));
-  };
-  var selectNone = function selectNone() {
-    setAllowedTags([]);
   };
   var getFilteredTags = function getFilteredTags() {
     switch (filterMode) {
@@ -14411,22 +14404,6 @@ var TagSelector = function TagSelector(_ref) {
   }, /*#__PURE__*/React__default["default"].createElement("h3", null, "Allowed HTML Tags & Actions"), /*#__PURE__*/React__default["default"].createElement("div", {
     className: "tag-selector-actions"
   }, /*#__PURE__*/React__default["default"].createElement("button", {
-    type: "button",
-    className: "filter-btn all",
-    onClick: function onClick(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      selectAll();
-    }
-  }, "All"), /*#__PURE__*/React__default["default"].createElement("button", {
-    type: "button",
-    className: "filter-btn none",
-    onClick: function onClick(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      selectNone();
-    }
-  }, "None"), /*#__PURE__*/React__default["default"].createElement("button", {
     type: "button",
     className: "close-btn",
     onClick: function onClick(e) {
@@ -14577,7 +14554,7 @@ var toolbarButtons = [{
   cmd: "formatBlock",
   icon: /*#__PURE__*/React__default["default"].createElement(FaHeading, null),
   options: [{
-    label: "*Normal* ",
+    label: "Normal",
     value: "p"
   }, {
     label: "Heading 1",

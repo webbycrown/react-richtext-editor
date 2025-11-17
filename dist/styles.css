@@ -476,6 +476,7 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 14px;
+  color: #333333;
 }
 
 .image-editor-col input[type="checkbox"] {
@@ -914,6 +915,7 @@
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s;
+  color: #333333;
 }
 
 .tag-item:hover {
@@ -1047,6 +1049,7 @@
   cursor: pointer;
   font-size: 12px;
   transition: all 0.2s;
+  color: #333333;
 }
 
 .filter-btn:hover {
@@ -1121,9 +1124,9 @@
 .rte-container.rte-theme-light .emoji-picker-popup,
 .rte-container.rte-theme-light .image-editor-modal,
 .rte-container.rte-theme-light .search-bar {
-  background-color: #ffffff;
+  background-color: #ffffff66 !important;
   color: #333333;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #e0e0e0 !important;
 }
 
 /* Dark theme */
@@ -1154,9 +1157,9 @@
 .rte-container.rte-theme-dark .emoji-picker-popup,
 .rte-container.rte-theme-dark .image-editor-modal,
 .rte-container.rte-theme-dark .search-bar {
-  background-color: #3d3d3d;
+  background-color: #3d3d3d66 !important;
   color: #f0f0f0;
-  border: 1px solid #4d4d4d;
+  border: 1px solid #4d4d4d !important;
 }
 
 /* Ensure inputs inside the editor are properly themed */
