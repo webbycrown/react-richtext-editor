@@ -549,29 +549,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ---
 
-## 📝 Changelog 
-[1.0.0] - 2025-11-14
-
-**Initial Release**
-
-- **Fully functional** React rich text editor component
-- **Controlled component** with value and onChange props
-- **Core features**: Bold, Italic, Underline, Strikethrough, Superscript, Subscript, Text color, Highlight, Case conversion
-- **Text structure support**: Headings (H1-H6), Paragraphs, Blockquotes, Alignment
-- **List support**: Ordered, Unordered, Nested
-- **Media & Links**: Insert/Edit images, Image styling, Links with target and security attributes
-- **Tables**: Insert tables with customizable rows and columns
-- **Content Management**: Undo/Redo, Copy/Cut/Paste, Search, Select All, Delete
-- **Advanced Features**: HTML code view toggle, Emoji picker, Preview mode, Horizontal rules, Auto-save
-- **Security**: DOMPurify integration, XSS protection, Safe Paste, Allowed HTML tags control
-- **Customization**: Plugin system, Theme support (Light/Dark), Customizable toolbar, Responsive design
-- **Plugins**: HTML Tag plugin, Command plugin, Action plugin, Type plugin
-- **Form integration** examples included
-- **Recommended security** practices documented
-- **Browser support**: Modern browsers with ContentEditable and ES6+ features
-
----
-
 ## 📄 License
 
 This project is open source and available under the MIT License.
@@ -584,6 +561,30 @@ This project is open source and available under the MIT License.
 - The `allowedTags` prop is useful for restricting formatting options based on your use case
 - Plugins are a great way to add custom functionality without modifying the core editor
 - The theme automatically adapts to system preferences, but users can override it manually
+
+---
+
+
+## 🔖 Changelog
+[1.0.0] - 2025-11-14
+
+Initial Release ✨
+
+- 🔧 **Fully functional** React rich text editor component
+- 🎛️ **Controlled component** with value and onChange props
+- ✍️ **Core features**: Bold, Italic, <u>Underline</u>, Strikethrough, Superscript, Subscript, Text color, Highlight, Case conversion
+- 🗂️ **Text structure** support: Headings (H1–H6), Paragraphs, Blockquotes, Alignment
+- 📋 **List support**: Ordered, Unordered, Nested
+- 🖼️ **Media & Links**: Insert/Edit images, Image styling, Links (with target & security attrs)
+- 🧩 **Tables**: Insert tables with customizable rows & columns
+- 🔁 **Content management**: Undo/Redo, Copy/Cut/Paste, Search, Select All, Delete
+- 🚀 **Advanced features**: HTML code view toggle, Emoji picker, Preview mode, Horizontal rules, Auto-save
+- 🛡️ **Security**: DOMPurify integration, XSS protection, Safe Paste, Allowed HTML tags control
+- 🎨 **Customization**: Plugin system, Theme support (Light / Dark), Customizable toolbar, Responsive design
+- 🔌 **Plugins included**: HTML Tag, Command, Action, Type plugins
+- 🧾 **Form integration examples** included
+- 🔐 **Recommended security** practices documented
+- 🌐 **Browser support**: Modern browsers with contentEditable & ES6+ features
 
 ---
 
