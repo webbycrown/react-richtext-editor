@@ -566,7 +566,21 @@ This project is open source and available under the MIT License.
 
 
 ## 🔖 Changelog
-[1.0.0] - 2025-11-14
+
+### [1.0.1] - 2025-11-18
+
+**Package Name Change** 📦
+
+- ⚠️ **BREAKING CHANGE**: Package name changed from `react-advanced-richtext-editor` to `@webbycrown/react-advanced-richtext-editor`
+- 📦 **Migration**: Update your imports and installation command
+  - Old: `npm i react-advanced-richtext-editor`
+  - New: `npm i @webbycrown/react-advanced-richtext-editor`
+- ✅ All functionality remains the same
+- ✅ No API changes
+
+---
+
+### [1.0.0] - 2025-11-14
 
 Initial Release ✨
 
