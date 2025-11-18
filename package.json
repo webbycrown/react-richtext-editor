@@ -1,6 +1,6 @@
 {
   "name": "@webbycrown/react-advanced-richtext-editor",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "A powerful, feature-rich, and customizable rich text editor built for React applications with plugin support and security features.",
   "main": "dist/react-advanced-richtext-editor.cjs.js",
   "module": "dist/react-advanced-richtext-editor.esm.js",

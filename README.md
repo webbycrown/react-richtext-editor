@@ -566,8 +566,7 @@ This project is open source and available under the MIT License.
 
 
 ## 🔖 Changelog
-
-### [1.0.0] - 2025-11-14
+[1.0.0] - 2025-11-18
 
 Initial Release ✨
 
@@ -592,4 +591,3 @@ Initial Release ✨
 <div align="center">
 <strong>Made with ❤️ by <a href="https://webbycrown.com">WebbyCrown</a></strong>
 </div>
-
