@@ -1,18 +1,50 @@
 {
-  "name": "react-richtext-editor",
-  "version": "1.0.0",
-  "description": "A simple react richtext editor React component.",
-  "main": "dist/react-richtext-editor.cjs.js",
-  "module": "dist/react-richtext-editor.esm.js",
+  "name": "@webbycrown/react-advanced-richtext-editor",
+  "version": "1.0.1",
+  "description": "A powerful, feature-rich, and customizable rich text editor built for React applications with plugin support and security features.",
+  "main": "dist/react-advanced-richtext-editor.cjs.js",
+  "module": "dist/react-advanced-richtext-editor.esm.js",
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "build": "rollup -c",
     "prepublishOnly": "npm run build"
   },
+  "keywords": [
+    "react",
+    "richtext",
+    "rich-text-editor",
+    "wysiwyg",
+    "editor",
+    "text-editor",
+    "html-editor",
+    "contenteditable",
+    "react-component",
+    "nextjs",
+    "markdown",
+    "dompurify",
+    "emoji-picker",
+    "plugin-system"
+  ],
+  "author": "WebbyCrown (https://webbycrown.com)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webbycrown/react-advanced-richtext-editor"
+  },
+  "homepage": "https://github.com/webbycrown/react-advanced-richtext-editor#readme",
+  "bugs": {
+    "url": "https://github.com/webbycrown/react-advanced-richtext-editor/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
-    "react": "^18.3.1"
+    "react": "^18.3.1 || ^19.0.0",
+    "react-dom": "^18.3.1 || ^19.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.28.5",
@@ -30,12 +62,10 @@
     "@fortawesome/fontawesome-svg-core": "^7.1.0",
     "@fortawesome/free-solid-svg-icons": "^7.1.0",
     "@fortawesome/react-fontawesome": "^3.1.0",
-    "build": "^0.1.4",
     "dompurify": "^3.3.0",
     "emoji-picker-react": "^4.15.0",
     "marked": "^16.4.1",
     "react-avatar-editor": "^13.0.2",
-    "react-dom": "^19.2.0",
     "react-icons": "^5.5.0"
   }
 }

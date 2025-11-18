@@ -7,13 +7,13 @@ export default {
   input: "src/index.js",
   output: [
     {
-      file: "dist/react-richtext-editor.esm.js",
+      file: "dist/react-advanced-richtext-editor.esm.js",
       format: "esm",
       sourcemap: true,
       exports: "named"
     },
     {
-      file: "dist/react-richtext-editor.cjs.js",
+      file: "dist/react-advanced-richtext-editor.cjs.js",
       format: "cjs",
       sourcemap: true,
       exports: "named"

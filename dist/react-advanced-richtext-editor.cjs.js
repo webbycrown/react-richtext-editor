@@ -1,4 +1,12 @@
-import React, { createContext, createElement, memo, useState, useEffect, Fragment, Component, useContext, useRef, createRef, useMemo, useCallback, Suspense } from 'react';
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+var React = require('react');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 function _arrayLikeToArray$1(r, a) {
   (null == a || a > r.length) && (a = r.length);
@@ -2069,8 +2077,8 @@ var commonStyles = /*#__PURE__*/stylesheet.create({
     '.': ClassNames.hidden
   }, hidden)
 });
-var PickerStyleTag = /*#__PURE__*/memo(function PickerStyleTag() {
-  return /*#__PURE__*/createElement("style", {
+var PickerStyleTag = /*#__PURE__*/React.memo(function PickerStyleTag() {
+  return /*#__PURE__*/React.createElement("style", {
     suppressHydrationWarning: true,
     dangerouslySetInnerHTML: {
       __html: stylesheet.getStyle()
@@ -2160,10 +2168,10 @@ function useDebouncedState(initialValue, delay) {
   if (delay === void 0) {
     delay = 0;
   }
-  var _useState = useState(initialValue),
+  var _useState = React.useState(initialValue),
     state = _useState[0],
     setState = _useState[1];
-  var timer = useRef(null);
+  var timer = React.useRef(null);
   function debouncedSetState(value) {
     return new Promise(function (resolve) {
       var _window;
@@ -2185,9 +2193,9 @@ function useIsUnicodeHidden() {
   };
 }
 function useDisallowedEmojis() {
-  var DisallowedEmojisRef = useRef({});
+  var DisallowedEmojisRef = React.useRef({});
   var emojiVersionConfig = useEmojiVersionConfig();
-  return useMemo(function () {
+  return React.useMemo(function () {
     var emojiVersion = parseFloat("" + emojiVersionConfig);
     if (!emojiVersionConfig || Number.isNaN(emojiVersion)) {
       return DisallowedEmojisRef.current;
@@ -2212,7 +2220,7 @@ function addedInNewerVersion(emoji, supportedLevel) {
   return addedIn(emoji) > supportedLevel;
 }
 function useMarkInitialLoad(dispatch) {
-  useEffect(function () {
+  React.useEffect(function () {
     dispatch(true);
   }, [dispatch]);
 }
@@ -2268,24 +2276,24 @@ function PickerContextProvider(_ref) {
   var defaultSkinTone = useDefaultSkinToneConfig();
   var reactionsDefaultOpen = useReactionsOpenConfig();
   // Initialize the filter with the inititial dictionary
-  var filterRef = useRef(alphaNumericEmojiIndex);
-  var disallowClickRef = useRef(false);
-  var disallowMouseRef = useRef(false);
-  var disallowedEmojisRef = useRef(disallowedEmojis);
+  var filterRef = React.useRef(alphaNumericEmojiIndex);
+  var disallowClickRef = React.useRef(false);
+  var disallowMouseRef = React.useRef(false);
+  var disallowedEmojisRef = React.useRef(disallowedEmojis);
   var suggestedUpdateState = useDebouncedState(Date.now(), 200);
   var searchTerm = useDebouncedState('', 100);
-  var skinToneFanOpenState = useState(false);
-  var activeSkinTone = useState(defaultSkinTone);
-  var activeCategoryState = useState(null);
-  var emojisThatFailedToLoadState = useState(new Set());
-  var emojiVariationPickerState = useState(null);
-  var reactionsModeState = useState(reactionsDefaultOpen);
-  var _useState = useState(false),
+  var skinToneFanOpenState = React.useState(false);
+  var activeSkinTone = React.useState(defaultSkinTone);
+  var activeCategoryState = React.useState(null);
+  var emojisThatFailedToLoadState = React.useState(new Set());
+  var emojiVariationPickerState = React.useState(null);
+  var reactionsModeState = React.useState(reactionsDefaultOpen);
+  var _useState = React.useState(false),
     isPastInitialLoad = _useState[0],
     setIsPastInitialLoad = _useState[1];
-  var visibleCategoriesState = useState([]);
+  var visibleCategoriesState = React.useState([]);
   useMarkInitialLoad(setIsPastInitialLoad);
-  return /*#__PURE__*/createElement(PickerContext.Provider, {
+  return /*#__PURE__*/React.createElement(PickerContext.Provider, {
     value: {
       activeCategoryState: activeCategoryState,
       activeSkinTone: activeSkinTone,
@@ -2304,7 +2312,7 @@ function PickerContextProvider(_ref) {
     }
   }, children);
 }
-var PickerContext = /*#__PURE__*/createContext({
+var PickerContext = /*#__PURE__*/React.createContext({
   activeCategoryState: [null, function () {}],
   activeSkinTone: [SkinTones.NEUTRAL, function () {}],
   disallowClickRef: {
@@ -2335,57 +2343,57 @@ var PickerContext = /*#__PURE__*/createContext({
   }]
 });
 function useFilterRef() {
-  var _React$useContext = useContext(PickerContext),
+  var _React$useContext = React.useContext(PickerContext),
     filterRef = _React$useContext.filterRef;
   return filterRef;
 }
 function useDisallowClickRef() {
-  var _React$useContext2 = useContext(PickerContext),
+  var _React$useContext2 = React.useContext(PickerContext),
     disallowClickRef = _React$useContext2.disallowClickRef;
   return disallowClickRef;
 }
 function useDisallowMouseRef() {
-  var _React$useContext3 = useContext(PickerContext),
+  var _React$useContext3 = React.useContext(PickerContext),
     disallowMouseRef = _React$useContext3.disallowMouseRef;
   return disallowMouseRef;
 }
 function useReactionsModeState() {
-  var _React$useContext4 = useContext(PickerContext),
+  var _React$useContext4 = React.useContext(PickerContext),
     reactionsModeState = _React$useContext4.reactionsModeState;
   return reactionsModeState;
 }
 function useSearchTermState() {
-  var _React$useContext5 = useContext(PickerContext),
+  var _React$useContext5 = React.useContext(PickerContext),
     searchTerm = _React$useContext5.searchTerm;
   return searchTerm;
 }
 function useActiveSkinToneState() {
-  var _React$useContext6 = useContext(PickerContext),
+  var _React$useContext6 = React.useContext(PickerContext),
     activeSkinTone = _React$useContext6.activeSkinTone;
   return activeSkinTone;
 }
 function useEmojisThatFailedToLoadState() {
-  var _React$useContext7 = useContext(PickerContext),
+  var _React$useContext7 = React.useContext(PickerContext),
     emojisThatFailedToLoadState = _React$useContext7.emojisThatFailedToLoadState;
   return emojisThatFailedToLoadState;
 }
 function useEmojiVariationPickerState() {
-  var _React$useContext9 = useContext(PickerContext),
+  var _React$useContext9 = React.useContext(PickerContext),
     emojiVariationPickerState = _React$useContext9.emojiVariationPickerState;
   return emojiVariationPickerState;
 }
 function useSkinToneFanOpenState() {
-  var _React$useContext10 = useContext(PickerContext),
+  var _React$useContext10 = React.useContext(PickerContext),
     skinToneFanOpenState = _React$useContext10.skinToneFanOpenState;
   return skinToneFanOpenState;
 }
 function useVisibleCategoriesState() {
-  var _React$useContext12 = useContext(PickerContext),
+  var _React$useContext12 = React.useContext(PickerContext),
     visibleCategoriesState = _React$useContext12.visibleCategoriesState;
   return visibleCategoriesState;
 }
 function useUpdateSuggested() {
-  var _React$useContext13 = useContext(PickerContext),
+  var _React$useContext13 = React.useContext(PickerContext),
     suggestedUpdateState = _React$useContext13.suggestedUpdateState;
   var suggestedUpdated = suggestedUpdateState[0],
     setsuggestedUpdate = suggestedUpdateState[1];
@@ -10524,7 +10532,7 @@ function useGetEmojisByCategory() {
   var suggestedEmojisModeConfig = useSuggestedEmojisModeConfig();
   var _useUpdateSuggested = useUpdateSuggested(),
     suggestedUpdated = _useUpdateSuggested[0];
-  var suggested = React.useMemo(function () {
+  var suggested = React__default["default"].useMemo(function () {
     var _getSuggested;
     var suggested = (_getSuggested = getSuggested(suggestedEmojisModeConfig)) != null ? _getSuggested : [];
     return suggested.map(function (s) {
@@ -10669,23 +10677,23 @@ var basePreviewConfig = {
   showPreview: true
 };
 var _excluded$1 = ["children"];
-var ConfigContext = /*#__PURE__*/createContext(/*#__PURE__*/basePickerConfig());
+var ConfigContext = /*#__PURE__*/React.createContext(/*#__PURE__*/basePickerConfig());
 function PickerConfigProvider(_ref) {
   var children = _ref.children,
     config = _objectWithoutPropertiesLoose$1(_ref, _excluded$1);
   var mergedConfig = useSetConfig(config);
-  return /*#__PURE__*/createElement(ConfigContext.Provider, {
+  return /*#__PURE__*/React.createElement(ConfigContext.Provider, {
     value: mergedConfig
   }, children);
 }
 function useSetConfig(config) {
   var _config$customEmojis;
-  var _React$useState = useState(function () {
+  var _React$useState = React.useState(function () {
       return mergeConfig(config);
     }),
     mergedConfig = _React$useState[0],
     setMergedConfig = _React$useState[1];
-  useEffect(function () {
+  React.useEffect(function () {
     if (compareConfig(mergedConfig, config)) {
       return;
     }
@@ -10696,24 +10704,24 @@ function useSetConfig(config) {
   return mergedConfig;
 }
 function usePickerConfig() {
-  return useContext(ConfigContext);
+  return React.useContext(ConfigContext);
 }
-var MutableConfigContext = /*#__PURE__*/React.createContext({});
+var MutableConfigContext = /*#__PURE__*/React__default["default"].createContext({});
 function useMutableConfig() {
-  var mutableConfig = React.useContext(MutableConfigContext);
+  var mutableConfig = React__default["default"].useContext(MutableConfigContext);
   return mutableConfig;
 }
 function useDefineMutableConfig(config) {
-  var MutableConfigRef = React.useRef({
+  var MutableConfigRef = React__default["default"].useRef({
     onEmojiClick: config.onEmojiClick || emptyFunc,
     onReactionClick: config.onReactionClick || config.onEmojiClick,
     onSkinToneChange: config.onSkinToneChange || emptyFunc
   });
-  React.useEffect(function () {
+  React__default["default"].useEffect(function () {
     MutableConfigRef.current.onEmojiClick = config.onEmojiClick || emptyFunc;
     MutableConfigRef.current.onReactionClick = config.onReactionClick || config.onEmojiClick;
   }, [config.onEmojiClick, config.onReactionClick]);
-  React.useEffect(function () {
+  React__default["default"].useEffect(function () {
     MutableConfigRef.current.onSkinToneChange = config.onSkinToneChange || emptyFunc;
   }, [config.onSkinToneChange]);
   return MutableConfigRef;
@@ -10924,16 +10932,16 @@ function getActiveElement() {
 }
 function ElementRefContextProvider(_ref) {
   var children = _ref.children;
-  var PickerMainRef = useRef(null);
-  var AnchoredEmojiRef = useRef(null);
-  var BodyRef = useRef(null);
-  var EmojiListRef = useRef(null);
-  var SearchInputRef = useRef(null);
-  var SkinTonePickerRef = useRef(null);
-  var CategoryNavigationRef = useRef(null);
-  var VariationPickerRef = useRef(null);
-  var ReactionsRef = useRef(null);
-  return /*#__PURE__*/createElement(ElementRefContext.Provider, {
+  var PickerMainRef = React.useRef(null);
+  var AnchoredEmojiRef = React.useRef(null);
+  var BodyRef = React.useRef(null);
+  var EmojiListRef = React.useRef(null);
+  var SearchInputRef = React.useRef(null);
+  var SkinTonePickerRef = React.useRef(null);
+  var CategoryNavigationRef = React.useRef(null);
+  var VariationPickerRef = React.useRef(null);
+  var ReactionsRef = React.useRef(null);
+  return /*#__PURE__*/React.createElement(ElementRefContext.Provider, {
     value: {
       AnchoredEmojiRef: AnchoredEmojiRef,
       BodyRef: BodyRef,
@@ -10947,19 +10955,19 @@ function ElementRefContextProvider(_ref) {
     }
   }, children);
 }
-var ElementRefContext = /*#__PURE__*/createContext({
-  AnchoredEmojiRef: /*#__PURE__*/createRef(),
-  BodyRef: /*#__PURE__*/createRef(),
-  CategoryNavigationRef: /*#__PURE__*/createRef(),
-  EmojiListRef: /*#__PURE__*/createRef(),
-  PickerMainRef: /*#__PURE__*/createRef(),
-  SearchInputRef: /*#__PURE__*/createRef(),
-  SkinTonePickerRef: /*#__PURE__*/createRef(),
-  VariationPickerRef: /*#__PURE__*/createRef(),
-  ReactionsRef: /*#__PURE__*/createRef()
+var ElementRefContext = /*#__PURE__*/React.createContext({
+  AnchoredEmojiRef: /*#__PURE__*/React.createRef(),
+  BodyRef: /*#__PURE__*/React.createRef(),
+  CategoryNavigationRef: /*#__PURE__*/React.createRef(),
+  EmojiListRef: /*#__PURE__*/React.createRef(),
+  PickerMainRef: /*#__PURE__*/React.createRef(),
+  SearchInputRef: /*#__PURE__*/React.createRef(),
+  SkinTonePickerRef: /*#__PURE__*/React.createRef(),
+  VariationPickerRef: /*#__PURE__*/React.createRef(),
+  ReactionsRef: /*#__PURE__*/React.createRef()
 });
 function useElementRef() {
-  return useContext(ElementRefContext);
+  return React.useContext(ElementRefContext);
 }
 function useEmojiListRef() {
   return useElementRef()['EmojiListRef'];
@@ -11020,7 +11028,7 @@ function scrollBy(root, by) {
 }
 function useScrollTo() {
   var BodyRef = useBodyRef();
-  return useCallback(function (top) {
+  return React.useCallback(function (top) {
     requestAnimationFrame(function () {
       if (BodyRef.current) {
         BodyRef.current.scrollTop = top;
@@ -11167,7 +11175,7 @@ function useCloseAllOpenToggles() {
   var _useSkinToneFanOpenSt = useSkinToneFanOpenState(),
     skinToneFanOpen = _useSkinToneFanOpenSt[0],
     setSkinToneFanOpen = _useSkinToneFanOpenSt[1];
-  var closeAllOpenToggles = useCallback(function () {
+  var closeAllOpenToggles = React.useCallback(function () {
     if (variationPicker) {
       setVariationPicker(null);
     }
@@ -11208,7 +11216,7 @@ function useOnMouseMove() {
   var BodyRef = useBodyRef();
   var allowMouseMove = useAllowMouseMove();
   var isMouseDisallowed = useIsMouseDisallowed();
-  useEffect(function () {
+  React.useEffect(function () {
     var bodyRef = BodyRef.current;
     bodyRef == null ? void 0 : bodyRef.addEventListener('mousemove', onMouseMove, {
       passive: true
@@ -11225,13 +11233,13 @@ function useOnMouseMove() {
 }
 function useFocusSearchInput() {
   var SearchInputRef = useSearchInputRef();
-  return useCallback(function () {
+  return React.useCallback(function () {
     focusElement(SearchInputRef.current);
   }, [SearchInputRef]);
 }
 function useFocusSkinTonePicker() {
   var SkinTonePickerRef = useSkinTonePickerRef();
-  return useCallback(function () {
+  return React.useCallback(function () {
     if (!SkinTonePickerRef.current) {
       return;
     }
@@ -11240,7 +11248,7 @@ function useFocusSkinTonePicker() {
 }
 function useFocusCategoryNavigation() {
   var CategoryNavigationRef = useCategoryNavigationRef();
-  return useCallback(function () {
+  return React.useCallback(function () {
     if (!CategoryNavigationRef.current) {
       return;
     }
@@ -11433,7 +11441,7 @@ function usePickerMainKeyboardEvents() {
   var hasOpenToggles = useHasOpenToggles();
   var disallowMouseMove = useDisallowMouseMove();
   var closeAllOpenToggles = useCloseAllOpenToggles();
-  var onKeyDown = useMemo(function () {
+  var onKeyDown = React.useMemo(function () {
     return function onKeyDown(event) {
       var key = event.key;
       disallowMouseMove();
@@ -11452,7 +11460,7 @@ function usePickerMainKeyboardEvents() {
       }
     };
   }, [scrollTo, clearSearch, closeAllOpenToggles, focusSearchInput, hasOpenToggles, disallowMouseMove]);
-  useEffect(function () {
+  React.useEffect(function () {
     var current = PickerMainRef.current;
     if (!current) {
       return;
@@ -11472,7 +11480,7 @@ function useSearchInputKeyboardEvents() {
     setSkinToneFanOpenState = _useSkinToneFanOpenSt[1];
   var goDownFromSearchInput = useGoDownFromSearchInput();
   var isSkinToneInSearch = useIsSkinToneInSearch();
-  var onKeyDown = useMemo(function () {
+  var onKeyDown = React.useMemo(function () {
     return function onKeyDown(event) {
       var key = event.key;
       switch (key) {
@@ -11495,7 +11503,7 @@ function useSearchInputKeyboardEvents() {
       }
     };
   }, [focusSkinTonePicker, goDownFromSearchInput, setSkinToneFanOpenState, BodyRef, isSkinToneInSearch]);
-  useEffect(function () {
+  React.useEffect(function () {
     var current = SearchInputRef.current;
     if (!current) {
       return;
@@ -11517,7 +11525,7 @@ function useSkinTonePickerKeyboardEvents() {
   var isSkinToneInPreview = useIsSkinToneInPreview();
   var isSkinToneInSearch = useIsSkinToneInSearch();
   var onType = useOnType();
-  var onKeyDown = useMemo(function () {
+  var onKeyDown = React.useMemo(function () {
     return (
       // eslint-disable-next-line complexity
       function onKeyDown(event) {
@@ -11574,7 +11582,7 @@ function useSkinTonePickerKeyboardEvents() {
       }
     );
   }, [isOpen, focusSearchInput, setIsOpen, goDownFromSearchInput, onType, isSkinToneInPreview, isSkinToneInSearch]);
-  useEffect(function () {
+  React.useEffect(function () {
     var current = SkinTonePickerRef.current;
     if (!current) {
       return;
@@ -11590,7 +11598,7 @@ function useCategoryNavigationKeyboardEvents() {
   var CategoryNavigationRef = useCategoryNavigationRef();
   var BodyRef = useBodyRef();
   var onType = useOnType();
-  var onKeyDown = useMemo(function () {
+  var onKeyDown = React.useMemo(function () {
     return function onKeyDown(event) {
       var key = event.key;
       switch (key) {
@@ -11616,7 +11624,7 @@ function useCategoryNavigationKeyboardEvents() {
       }
     };
   }, [BodyRef, focusSearchInput, onType]);
-  useEffect(function () {
+  React.useEffect(function () {
     var current = CategoryNavigationRef.current;
     if (!current) {
       return;
@@ -11634,7 +11642,7 @@ function useBodyKeyboardEvents() {
   var hasOpenToggles = useHasOpenToggles();
   var closeAllOpenToggles = useCloseAllOpenToggles();
   var onType = useOnType();
-  var onKeyDown = useMemo(function () {
+  var onKeyDown = React.useMemo(function () {
     return (
       // eslint-disable-next-line complexity
       function onKeyDown(event) {
@@ -11676,7 +11684,7 @@ function useBodyKeyboardEvents() {
       }
     );
   }, [goUpFromBody, onType, setVariationPicker, hasOpenToggles, closeAllOpenToggles]);
-  useEffect(function () {
+  React.useEffect(function () {
     var current = BodyRef.current;
     if (!current) {
       return;
@@ -11691,7 +11699,7 @@ function useGoDownFromSearchInput() {
   var focusCategoryNavigation = useFocusCategoryNavigation();
   var isSearchMode = useIsSearchMode();
   var BodyRef = useBodyRef();
-  return useCallback(function goDownFromSearchInput() {
+  return React.useCallback(function goDownFromSearchInput() {
     if (isSearchMode) {
       return focusFirstVisibleEmoji(BodyRef.current);
     }
@@ -11702,7 +11710,7 @@ function useGoUpFromBody() {
   var focusSearchInput = useFocusSearchInput();
   var focusCategoryNavigation = useFocusCategoryNavigation();
   var isSearchMode = useIsSearchMode();
-  return useCallback(function goUpFromEmoji() {
+  return React.useCallback(function goUpFromEmoji() {
     if (isSearchMode) {
       return focusSearchInput();
     }
@@ -11799,7 +11807,7 @@ function useOnFocus() {
   var BodyRef = useBodyRef();
   var emojiStyle = useEmojiStyleConfig();
   var getEmojiUrl = useGetEmojiUrlConfig();
-  useEffect(function () {
+  React.useEffect(function () {
     if (emojiStyle === EmojiStyle.NATIVE) {
       return;
     }
@@ -11828,7 +11836,7 @@ var _excluded$1$1 = ["width", "height"];
 var DEFAULT_LABEL_HEIGHT = 40;
 function PickerMain(_ref) {
   var children = _ref.children;
-  return /*#__PURE__*/createElement(PickerContextProvider, null, /*#__PURE__*/createElement(PickerRootElement, null, children));
+  return /*#__PURE__*/React.createElement(PickerContextProvider, null, /*#__PURE__*/React.createElement(PickerRootElement, null, children));
 }
 function PickerRootElement(_ref2) {
   var _cx;
@@ -11846,7 +11854,7 @@ function PickerRootElement(_ref2) {
     width = _ref3.width,
     height = _ref3.height,
     styleProps = _objectWithoutPropertiesLoose$1(_ref3, _excluded$1$1);
-  return /*#__PURE__*/createElement("aside", {
+  return /*#__PURE__*/React.createElement("aside", {
     className: cx(styles.main, styles.baseVariables, theme === Theme.DARK && styles.darkTheme, theme === Theme.AUTO && styles.autoThemeDark, (_cx = {}, _cx[ClassNames.searchActive] = searchModeActive, _cx), reactionsMode && styles.reactionsMenu, className),
     ref: PickerMainRef,
     style: _extends$1({}, styleProps, !reactionsMode && {
@@ -12263,7 +12271,7 @@ function isCustomEmoji(emoji) {
   return emoji.imgUrl !== undefined;
 }
 function useMouseDownHandlers(ContainerRef, mouseEventSource) {
-  var mouseDownTimerRef = useRef();
+  var mouseDownTimerRef = React.useRef();
   var setVariationPicker = useSetVariationPicker();
   var disallowClickRef = useDisallowClickRef();
   var _useEmojiVariationPic = useEmojiVariationPickerState(),
@@ -12276,7 +12284,7 @@ function useMouseDownHandlers(ContainerRef, mouseEventSource) {
     updateSuggested = _useUpdateSuggested[1];
   var getEmojiUrl = useGetEmojiUrlConfig();
   var activeEmojiStyle = useEmojiStyleConfig();
-  var onClick = useCallback(function onClick(event) {
+  var onClick = React.useCallback(function onClick(event) {
     if (disallowClickRef.current) {
       return;
     }
@@ -12292,7 +12300,7 @@ function useMouseDownHandlers(ContainerRef, mouseEventSource) {
     setSuggested(emoji, skinToneToUse);
     onEmojiClick(emojiClickOutput(emoji, skinToneToUse, activeEmojiStyle, getEmojiUrl), event);
   }, [activeSkinTone, closeAllOpenToggles, disallowClickRef, onEmojiClick, updateSuggested, getEmojiUrl, activeEmojiStyle]);
-  var onMouseDown = useCallback(function onMouseDown(event) {
+  var onMouseDown = React.useCallback(function onMouseDown(event) {
     var _window;
     if (mouseDownTimerRef.current) {
       clearTimeout(mouseDownTimerRef.current);
@@ -12310,7 +12318,7 @@ function useMouseDownHandlers(ContainerRef, mouseEventSource) {
       setEmojiVariationPicker(emoji);
     }, 500);
   }, [disallowClickRef, closeAllOpenToggles, setVariationPicker, setEmojiVariationPicker]);
-  var onMouseUp = useCallback(function onMouseUp() {
+  var onMouseUp = React.useCallback(function onMouseUp() {
     if (mouseDownTimerRef.current) {
       clearTimeout(mouseDownTimerRef.current);
       mouseDownTimerRef.current = undefined;
@@ -12325,7 +12333,7 @@ function useMouseDownHandlers(ContainerRef, mouseEventSource) {
       });
     }
   }, [disallowClickRef]);
-  useEffect(function () {
+  React.useEffect(function () {
     if (!ContainerRef.current) {
       return;
     }
@@ -12388,7 +12396,7 @@ function emojiClickOutput(emoji, activeSkinTone, activeEmojiStyle, getEmojiUrl) 
   };
 }
 function Button(props) {
-  return /*#__PURE__*/createElement("button", Object.assign({
+  return /*#__PURE__*/React.createElement("button", Object.assign({
     type: "button"
   }, props, {
     className: cx(styles$1.button, props.className)
@@ -12417,7 +12425,7 @@ function ClickableEmojiButton(_ref) {
     _ref$noBackground = _ref.noBackground,
     noBackground = _ref$noBackground === void 0 ? false : _ref$noBackground,
     style = _ref.style;
-  return /*#__PURE__*/createElement(Button, {
+  return /*#__PURE__*/React.createElement(Button, {
     className: cx(styles$2.emoji, hidden && commonStyles.hidden, hiddenOnSearch && commonInteractionStyles.hiddenOnSearch, (_cx = {}, _cx[ClassNames.visible] = !hidden && !hiddenOnSearch, _cx), !!(hasVariations && showVariations) && styles$2.hasVariations, noBackground && styles$2.noBackground, className),
     "data-unified": unified,
     "aria-label": getAriaLabel(emojiNames),
@@ -12502,7 +12510,7 @@ function EmojiImg(_ref) {
     imgUrl = _ref.imgUrl,
     onError = _ref.onError,
     className = _ref.className;
-  return /*#__PURE__*/createElement("img", {
+  return /*#__PURE__*/React.createElement("img", {
     src: imgUrl,
     alt: emojiName,
     className: cx(styles$3.emojiImag, emojiStyles.external, emojiStyles.common, className),
@@ -12525,7 +12533,7 @@ function NativeEmoji(_ref) {
   var unified = _ref.unified,
     style = _ref.style,
     className = _ref.className;
-  return /*#__PURE__*/createElement("span", {
+  return /*#__PURE__*/React.createElement("span", {
     className: cx(styles$4.nativeEmoji, emojiStyles.common, emojiStyles.external, className),
     "data-unified": unified,
     style: style
@@ -12565,7 +12573,7 @@ function ViewOnlyEmoji(_ref) {
     return null;
   }
   if (isCustomEmoji(emojiToRender)) {
-    return /*#__PURE__*/createElement(EmojiImg, {
+    return /*#__PURE__*/React.createElement(EmojiImg, {
       style: style,
       emojiName: unified,
       emojiStyle: EmojiStyle.NATIVE,
@@ -12575,11 +12583,11 @@ function ViewOnlyEmoji(_ref) {
       className: className
     });
   }
-  return /*#__PURE__*/createElement(Fragment, null, emojiStyle === EmojiStyle.NATIVE ? /*#__PURE__*/createElement(NativeEmoji, {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, emojiStyle === EmojiStyle.NATIVE ? /*#__PURE__*/React.createElement(NativeEmoji, {
     unified: unified,
     style: style,
     className: className
-  }) : /*#__PURE__*/createElement(EmojiImg, {
+  }) : /*#__PURE__*/React.createElement(EmojiImg, {
     style: style,
     emojiName: emojiName(emojiToRender),
     emojiStyle: emojiStyle,
@@ -12610,7 +12618,7 @@ function ClickableEmoji(_ref) {
     noBackground = _ref$noBackground === void 0 ? false : _ref$noBackground,
     style = _ref.style;
   var hasVariations = emojiHasVariations(emoji);
-  return /*#__PURE__*/createElement(ClickableEmojiButton, {
+  return /*#__PURE__*/React.createElement(ClickableEmojiButton, {
     hasVariations: hasVariations,
     showVariations: showVariations,
     hidden: hidden,
@@ -12619,7 +12627,7 @@ function ClickableEmoji(_ref) {
     unified: unified,
     noBackground: noBackground,
     style: style
-  }, /*#__PURE__*/createElement(ViewOnlyEmoji, {
+  }, /*#__PURE__*/React.createElement(ViewOnlyEmoji, {
     unified: unified,
     emoji: emoji,
     size: size,
@@ -12633,7 +12641,7 @@ var Plus = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idX
 function BtnPlus() {
   var _useReactionsModeStat = useReactionsModeState(),
     setReactionsMode = _useReactionsModeStat[1];
-  return /*#__PURE__*/createElement(Button, {
+  return /*#__PURE__*/React.createElement(Button, {
     "aria-label": "Show all Emojis",
     title: "Show all Emojis",
     tabIndex: 0,
@@ -12702,13 +12710,13 @@ function Reactions() {
   if (!reactionsOpen) {
     return null;
   }
-  return /*#__PURE__*/createElement("ul", {
+  return /*#__PURE__*/React.createElement("ul", {
     className: cx(styles$6.list, !reactionsOpen && commonStyles.hidden),
     ref: ReactionsRef
   }, reactions.map(function (reaction) {
-    return /*#__PURE__*/createElement("li", {
+    return /*#__PURE__*/React.createElement("li", {
       key: reaction
-    }, /*#__PURE__*/createElement(ClickableEmoji, {
+    }, /*#__PURE__*/React.createElement(ClickableEmoji, {
       emoji: emojiByUnified(reaction),
       emojiStyle: emojiStyle,
       unified: reaction,
@@ -12717,7 +12725,7 @@ function Reactions() {
       noBackground: true,
       getEmojiUrl: getEmojiUrl
     }));
-  }), allowExpandReactions ? /*#__PURE__*/createElement("li", null, /*#__PURE__*/createElement(BtnPlus, null)) : null);
+  }), allowExpandReactions ? /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(BtnPlus, null)) : null);
 }
 var styles$6 = /*#__PURE__*/stylesheet.create({
   list: {
@@ -12744,10 +12752,10 @@ var styles$6 = /*#__PURE__*/stylesheet.create({
 });
 function useOnScroll(BodyRef) {
   var closeAllOpenToggles = useCloseAllOpenToggles();
-  var _useState = useState(0),
+  var _useState = React.useState(0),
     scrollTop = _useState[0],
     setScrollTop = _useState[1];
-  useEffect(function () {
+  React.useEffect(function () {
     var bodyRef = BodyRef.current;
     if (!bodyRef) {
       return;
@@ -12792,14 +12800,14 @@ function useCategoryHeight(emojiCount) {
   var _useReactionsModeStat = useReactionsModeState(),
     isReactionsMode = _useReactionsModeStat[0];
   var PickerMainRef = usePickerMainRef();
-  var emojiSizeRef = useRef();
+  var emojiSizeRef = React.useRef();
   var _useVisibleCategories = useVisibleCategoriesState(),
     visibleCategories = _useVisibleCategories[0];
-  var _React$useState = useState(),
+  var _React$useState = React.useState(),
     dimensions = _React$useState[0],
     setDimensions = _React$useState[1];
   // Helper to compute and store dimensions based on current DOM
-  var computeAndSetDimensions = useCallback(function () {
+  var computeAndSetDimensions = React.useCallback(function () {
     var _ref;
     var listEl = EmojiListRef.current;
     if (!listEl) return;
@@ -12819,11 +12827,11 @@ function useCategoryHeight(emojiCount) {
     });
   }, [EmojiListRef, emojiCount]);
   // Recompute on data-count changes and when reactions mode toggles
-  useEffect(function () {
+  React.useEffect(function () {
     computeAndSetDimensions();
   }, [emojiCount, isReactionsMode, computeAndSetDimensions, visibleCategories.length]);
   // Listen to transitionend on the picker root (where height transition occurs)
-  useEffect(function () {
+  React.useEffect(function () {
     var rootEl = PickerMainRef.current;
     if (!rootEl) return;
     var handler = function handler(e) {
@@ -12890,7 +12898,7 @@ function useEmojiVirtualization(_ref) {
     return !failedToLoad && !filteredOut && !hidden && !isDisallowed;
   });
   var dimensions = useCategoryHeight(emojisToPush.length);
-  useEffect(function () {
+  React.useEffect(function () {
     if (dimensions) {
       onHeightReady(dimensions.categoryHeight);
     }
@@ -12915,7 +12923,7 @@ function useEmojiVirtualization(_ref) {
       virtualizedCounter++;
       return accumulator;
     }
-    accumulator.push(/*#__PURE__*/createElement(ClickableEmoji, {
+    accumulator.push(/*#__PURE__*/React.createElement(ClickableEmoji, {
       showVariations: showVariations,
       key: unified,
       emoji: emoji,
@@ -12943,13 +12951,13 @@ function EmojiCategory(_ref) {
     height = _ref.height;
   var category = categoryFromCategoryConfig(categoryConfig);
   var categoryName = categoryNameFromCategoryConfig(categoryConfig);
-  return /*#__PURE__*/createElement("li", {
+  return /*#__PURE__*/React.createElement("li", {
     className: cx(styles$7.category, hidden && commonStyles.hidden, hiddenOnSearch && commonInteractionStyles.hiddenOnSearch),
     "data-name": category,
     "aria-label": categoryName
-  }, /*#__PURE__*/createElement("h2", {
+  }, /*#__PURE__*/React.createElement("h2", {
     className: cx(styles$7.label)
-  }, categoryName), /*#__PURE__*/createElement("div", {
+  }, categoryName), /*#__PURE__*/React.createElement("div", {
     className: cx(styles$7.categoryContent),
     style: {
       height: height
@@ -12993,14 +13001,14 @@ var styles$7 = /*#__PURE__*/stylesheet.create({
 function EmojiList(_ref) {
   var scrollTop = _ref.scrollTop;
   var categories = useCategoriesConfig();
-  var _React$useState = useState({}),
+  var _React$useState = React.useState({}),
     categoryHeights = _React$useState[0],
     setCategoryHeights = _React$useState[1];
   var EmojiListRef = useEmojiListRef();
   var getEmojisByCategory = useGetEmojisByCategory();
   var labelHeight = getLabelHeight(EmojiListRef.current);
   var topOffset = 0;
-  return /*#__PURE__*/createElement("ul", {
+  return /*#__PURE__*/React.createElement("ul", {
     className: cx(styles$8.emojiList),
     ref: EmojiListRef
   }, categories.map(function (categoryConfig) {
@@ -13010,9 +13018,9 @@ function EmojiList(_ref) {
     if (categoryHeight) {
       topOffset += categoryHeight + labelHeight;
     }
-    return /*#__PURE__*/createElement(Suspense, {
+    return /*#__PURE__*/React.createElement(React.Suspense, {
       key: category
-    }, /*#__PURE__*/createElement(RenderCategory, {
+    }, /*#__PURE__*/React.createElement(RenderCategory, {
       categoryEmojis: getEmojisByCategory(category),
       categoryConfig: categoryConfig,
       topOffset: currentOffset,
@@ -13046,7 +13054,7 @@ function RenderCategory(_ref2) {
     virtualizedCounter = _useEmojiVirtualizati.virtualizedCounter,
     emojis = _useEmojiVirtualizati.emojis,
     dimensions = _useEmojiVirtualizati.dimensions;
-  return /*#__PURE__*/createElement(EmojiCategory, {
+  return /*#__PURE__*/React.createElement(EmojiCategory, {
     categoryConfig: categoryConfig,
     height: dimensions == null ? void 0 : dimensions.categoryHeight,
     // Indicates that there are no visible emojis
@@ -13083,7 +13091,7 @@ function EmojiVariationPicker() {
   var getEmojiUrl = useGetEmojiUrlConfig();
   var button = buttonFromTarget(AnchoredEmojiRef.current);
   var visible = Boolean(emoji && button && emojiHasVariations(emoji) && button.classList.contains(ClassNames.emojiHasVariations));
-  useEffect(function () {
+  React.useEffect(function () {
     if (!visible) {
       return;
     }
@@ -13096,14 +13104,14 @@ function EmojiVariationPicker() {
     top = getTop();
     pointerStyle = getPointerStyle();
   }
-  return /*#__PURE__*/createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     ref: VariationPickerRef,
     className: cx(styles$9.variationPicker, getMenuDirection() === Direction.Down && styles$9.pointingUp, visible && styles$9.visible),
     style: {
       top: top
     }
   }, visible && emoji ? [emojiUnified(emoji)].concat(emojiVariations(emoji)).slice(0, 6).map(function (unified) {
-    return /*#__PURE__*/createElement(ClickableEmoji, {
+    return /*#__PURE__*/React.createElement(ClickableEmoji, {
       key: unified,
       emoji: emoji,
       unified: unified,
@@ -13111,7 +13119,7 @@ function EmojiVariationPicker() {
       showVariations: false,
       getEmojiUrl: getEmojiUrl
     });
-  }) : null, /*#__PURE__*/createElement("div", {
+  }) : null, /*#__PURE__*/React.createElement("div", {
     className: cx(styles$9.pointer),
     style: pointerStyle
   }));
@@ -13229,10 +13237,10 @@ function Body() {
   var scrollTop = useOnScroll(BodyRef);
   useMouseDownHandlers(BodyRef, MOUSE_EVENT_SOURCE.PICKER);
   useOnMouseMove();
-  return /*#__PURE__*/createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     className: cx(styles$a.body, commonInteractionStyles.hiddenOnReactions),
     ref: BodyRef
-  }, /*#__PURE__*/createElement(EmojiVariationPicker, null), /*#__PURE__*/createElement(EmojiList, {
+  }, /*#__PURE__*/React.createElement(EmojiVariationPicker, null), /*#__PURE__*/React.createElement(EmojiList, {
     scrollTop: scrollTop
   }));
 }
@@ -13258,7 +13266,7 @@ function useEmojiPreviewEvents(allow, setPreviewEmoji) {
   var BodyRef = useBodyRef();
   var isMouseDisallowed = useIsMouseDisallowed();
   var allowMouseMove = useAllowMouseMove();
-  useEffect(function () {
+  React.useEffect(function () {
     if (!allow) {
       return;
     }
@@ -13352,7 +13360,7 @@ function Flex(_ref) {
     style = _ref$style === void 0 ? {} : _ref$style,
     _ref$direction = _ref.direction,
     direction = _ref$direction === void 0 ? FlexDirection.ROW : _ref$direction;
-  return /*#__PURE__*/createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: _extends$1({}, style),
     className: cx(styles$b.flex, className, styles$b[direction])
   }, children);
@@ -13370,7 +13378,7 @@ function Space(_ref) {
   var className = _ref.className,
     _ref$style = _ref.style,
     style = _ref$style === void 0 ? {} : _ref$style;
-  return /*#__PURE__*/createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: _extends$1({
       flex: 1
     }, style),
@@ -13381,7 +13389,7 @@ function Absolute(_ref) {
   var children = _ref.children,
     className = _ref.className,
     style = _ref.style;
-  return /*#__PURE__*/createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: _extends$1({}, style, {
       position: 'absolute'
     }),
@@ -13392,7 +13400,7 @@ function Relative(_ref) {
   var children = _ref.children,
     className = _ref.className,
     style = _ref.style;
-  return /*#__PURE__*/createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     style: _extends$1({}, style, {
       position: 'relative'
     }),
@@ -13407,7 +13415,7 @@ function BtnSkinToneVariation(_ref) {
     isActive = _ref.isActive,
     skinToneVariation = _ref.skinToneVariation,
     style = _ref.style;
-  return /*#__PURE__*/createElement(Button, {
+  return /*#__PURE__*/React.createElement(Button, {
     style: style,
     onClick: onClick,
     className: cx("epr-tone-" + skinToneVariation, styles$c.tone, !isOpen && styles$c.closedTone, isActive && styles$c.active),
@@ -13468,16 +13476,16 @@ var styles$c = /*#__PURE__*/stylesheet.create({
 /* eslint-disable complexity */
 var ITEM_SIZE = 28;
 function SkinTonePickerMenu() {
-  return /*#__PURE__*/createElement(Relative, {
+  return /*#__PURE__*/React.createElement(Relative, {
     style: {
       height: ITEM_SIZE
     }
-  }, /*#__PURE__*/createElement(Absolute, {
+  }, /*#__PURE__*/React.createElement(Absolute, {
     style: {
       bottom: 0,
       right: 0
     }
-  }, /*#__PURE__*/createElement(SkinTonePicker, {
+  }, /*#__PURE__*/React.createElement(SkinTonePicker, {
     direction: SkinTonePickerDirection.VERTICAL
   })));
 }
@@ -13501,7 +13509,7 @@ function SkinTonePicker(_ref) {
   var fullWidth = ITEM_SIZE * skinToneVariations.length + "px";
   var expandedSize = isOpen ? fullWidth : ITEM_SIZE + 'px';
   var vertical = direction === SkinTonePickerDirection.VERTICAL;
-  return /*#__PURE__*/createElement(Relative, {
+  return /*#__PURE__*/React.createElement(Relative, {
     className: cx(styles$d.skinTones, vertical && styles$d.vertical, isOpen && styles$d.open, vertical && isOpen && styles$d.verticalShadow),
     style: vertical ? {
       flexBasis: expandedSize,
@@ -13509,12 +13517,12 @@ function SkinTonePicker(_ref) {
     } : {
       flexBasis: expandedSize
     }
-  }, /*#__PURE__*/createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: cx(styles$d.select),
     ref: SkinTonePickerRef
   }, skinToneVariations.map(function (skinToneVariation, i) {
     var active = skinToneVariation === activeSkinTone;
-    return /*#__PURE__*/createElement(BtnSkinToneVariation, {
+    return /*#__PURE__*/React.createElement(BtnSkinToneVariation, {
       key: skinToneVariation,
       skinToneVariation: skinToneVariation,
       isOpen: isOpen,
@@ -13585,14 +13593,14 @@ function Preview() {
   if (!previewConfig.showPreview) {
     return null;
   }
-  return /*#__PURE__*/createElement(Flex, {
+  return /*#__PURE__*/React.createElement(Flex, {
     className: cx(styles$e.preview, commonInteractionStyles.hiddenOnReactions, reactionsOpen && styles$e.hideOnReactions)
-  }, /*#__PURE__*/createElement(PreviewBody, null), /*#__PURE__*/createElement(Space, null), isSkinToneInPreview ? /*#__PURE__*/createElement(SkinTonePickerMenu, null) : null);
+  }, /*#__PURE__*/React.createElement(PreviewBody, null), /*#__PURE__*/React.createElement(Space, null), isSkinToneInPreview ? /*#__PURE__*/React.createElement(SkinTonePickerMenu, null) : null);
 }
 function PreviewBody() {
   var _previewEmoji$unified;
   var previewConfig = usePreviewConfig();
-  var _useState = useState(null),
+  var _useState = React.useState(null),
     previewEmoji = _useState[0],
     setPreviewEmoji = _useState[1];
   var emojiStyle = useEmojiStyleConfig();
@@ -13602,28 +13610,28 @@ function PreviewBody() {
   useEmojiPreviewEvents(previewConfig.showPreview, setPreviewEmoji);
   var emoji = emojiByUnified((_previewEmoji$unified = previewEmoji == null ? void 0 : previewEmoji.unified) != null ? _previewEmoji$unified : previewEmoji == null ? void 0 : previewEmoji.originalUnified);
   var show = emoji != null && previewEmoji != null;
-  return /*#__PURE__*/createElement(PreviewContent, null);
+  return /*#__PURE__*/React.createElement(PreviewContent, null);
   function PreviewContent() {
     var defaultEmoji = variationPickerEmoji != null ? variationPickerEmoji : emojiByUnified(previewConfig.defaultEmoji);
     if (!defaultEmoji) {
       return null;
     }
     var defaultText = variationPickerEmoji ? emojiName(variationPickerEmoji) : previewConfig.defaultCaption;
-    return /*#__PURE__*/createElement(Fragment, null, /*#__PURE__*/createElement("div", null, show ? /*#__PURE__*/createElement(ViewOnlyEmoji, {
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", null, show ? /*#__PURE__*/React.createElement(ViewOnlyEmoji, {
       unified: previewEmoji == null ? void 0 : previewEmoji.unified,
       emoji: emoji,
       emojiStyle: emojiStyle,
       size: 45,
       getEmojiUrl: getEmojiUrl,
       className: cx(styles$e.emoji)
-    }) : defaultEmoji ? /*#__PURE__*/createElement(ViewOnlyEmoji, {
+    }) : defaultEmoji ? /*#__PURE__*/React.createElement(ViewOnlyEmoji, {
       unified: emojiUnified(defaultEmoji),
       emoji: defaultEmoji,
       emojiStyle: emojiStyle,
       size: 45,
       getEmojiUrl: getEmojiUrl,
       className: cx(styles$e.emoji)
-    }) : null), /*#__PURE__*/createElement("div", {
+    }) : null), /*#__PURE__*/React.createElement("div", {
       className: cx(styles$e.label)
     }, show ? emojiName(emoji) : defaultText));
   }
@@ -13659,7 +13667,7 @@ function useActiveCategoryScrollDetection(_ref) {
   var setActiveCategory = _ref.setActiveCategory,
     setVisibleCategories = _ref.setVisibleCategories;
   var BodyRef = useBodyRef();
-  useEffect(function () {
+  React.useEffect(function () {
     var visibleCategories = new Map();
     var bodyRef = BodyRef.current;
     var observer = new IntersectionObserver(function (entries) {
@@ -13734,7 +13742,7 @@ function CategoryButton(_ref) {
     allowNavigation = _ref.allowNavigation,
     categoryConfig = _ref.categoryConfig,
     onClick = _ref.onClick;
-  return /*#__PURE__*/createElement(Button, {
+  return /*#__PURE__*/React.createElement(Button, {
     tabIndex: allowNavigation ? 0 : -1,
     className: cx(styles$f.catBtn, commonInteractionStyles.categoryBtn, "epr-icn-" + category, (_cx = {}, _cx[ClassNames.active] = isActiveCategory, _cx)),
     onClick: onClick,
@@ -13816,7 +13824,7 @@ var styles$f = /*#__PURE__*/stylesheet.create(/*#__PURE__*/_extends$1({
   '.epr-auto-theme': /*#__PURE__*/_extends$1({}, DarkInactivePosition)
 }));
 function CategoryNavigation() {
-  var _useState = useState(null),
+  var _useState = React.useState(null),
     activeCategory = _useState[0],
     setActiveCategory = _useState[1];
   var _useVisibleCategories = useVisibleCategoriesState(),
@@ -13830,7 +13838,7 @@ function CategoryNavigation() {
   var categoriesConfig = useCategoriesConfig();
   var CategoryNavigationRef = useCategoryNavigationRef();
   var hideCustomCategory = useShouldHideCustomEmojis();
-  return /*#__PURE__*/createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     className: cx(styles$g.nav),
     role: "tablist",
     "aria-label": "Category navigation",
@@ -13843,7 +13851,7 @@ function CategoryNavigation() {
       return null;
     }
     var allowNavigation = !isSearchMode && !isActiveCategory;
-    return /*#__PURE__*/createElement(CategoryButton, {
+    return /*#__PURE__*/React.createElement(CategoryButton, {
       key: category,
       category: category,
       isActiveCategory: isActiveCategory,
@@ -13884,12 +13892,12 @@ var styles$g = /*#__PURE__*/stylesheet.create({
 var SVGTimes = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDI2LjMuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSIyMHB4IiBoZWlnaHQ9IjgwcHgiIHZpZXdCb3g9IjAgMCAyMCA4MCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMjAgODAiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cGF0aCBmaWxsPSIjODY4Njg2IiBkPSJNNi45OCwxMy41OWMwLjEsMC4xLDAuMjQsMC4xNSwwLjM3LDAuMTVzMC4yNy0wLjA1LDAuMzctMC4xNWwyLjQyLTIuNDJsMi40MywyLjQzCgljMC4xLDAuMSwwLjI0LDAuMTUsMC4zNywwLjE1YzAuMTQsMCwwLjI3LTAuMDUsMC4zNy0wLjE1YzAuMjEtMC4yMSwwLjIxLTAuNTQsMC0wLjc1bC0yLjQzLTIuNDNMMTMuMzIsOAoJYzAuMjEtMC4yMSwwLjIxLTAuNTQsMC0wLjc1Yy0wLjIxLTAuMjEtMC41NC0wLjIxLTAuNzUsMGwtMi40MiwyLjQyTDcuNzQsNy4yN2MtMC4yMS0wLjIxLTAuNTQtMC4yMS0wLjc1LDAKCWMtMC4yMSwwLjIxLTAuMjEsMC41NCwwLDAuNzVsMi40MSwyLjQxbC0yLjQyLDIuNDJDNi43NywxMy4wNSw2Ljc3LDEzLjM5LDYuOTgsMTMuNTlMNi45OCwxMy41OXoiLz4KPHBhdGggZmlsbD0iIzg2ODY4NiIgZD0iTTEwLjE1LDE4LjQzYzQuNDEsMCw4LTMuNTksOC04YzAtNC40MS0zLjU5LTgtOC04Yy00LjQxLDAtOCwzLjU5LTgsOEMyLjE1LDE0Ljg0LDUuNzQsMTguNDMsMTAuMTUsMTguNDN6CgkgTTEwLjE1LDMuNDljMy44MywwLDYuOTQsMy4xMSw2Ljk0LDYuOTRjMCwzLjgzLTMuMTEsNi45NC02Ljk0LDYuOTRjLTMuODMsMC02Ljk0LTMuMTEtNi45NC02Ljk0QzMuMjEsNi42LDYuMzMsMy40OSwxMC4xNSwzLjQ5CglMMTAuMTUsMy40OXoiLz4KPHBhdGggZmlsbD0iIzMzNzFCNyIgZD0iTTYuOTgsMzMuNTljMC4xLDAuMSwwLjI0LDAuMTUsMC4zNywwLjE1czAuMjctMC4wNSwwLjM3LTAuMTVsMi40Mi0yLjQybDIuNDMsMi40MwoJYzAuMSwwLjEsMC4yNCwwLjE1LDAuMzcsMC4xNWMwLjE0LDAsMC4yNy0wLjA1LDAuMzctMC4xNWMwLjIxLTAuMjEsMC4yMS0wLjU0LDAtMC43NWwtMi40My0yLjQzTDEzLjMyLDI4CgljMC4yMS0wLjIxLDAuMjEtMC41NCwwLTAuNzVjLTAuMjEtMC4yMS0wLjU0LTAuMjEtMC43NSwwbC0yLjQyLDIuNDJsLTIuNDEtMi40MWMtMC4yMS0wLjIxLTAuNTQtMC4yMS0wLjc1LDAKCWMtMC4yMSwwLjIxLTAuMjEsMC41NCwwLDAuNzVsMi40MSwyLjQxbC0yLjQyLDIuNDJDNi43NywzMy4wNSw2Ljc3LDMzLjM5LDYuOTgsMzMuNTlMNi45OCwzMy41OXoiLz4KPHBhdGggZmlsbD0iIzMzNzFCNyIgZD0iTTEwLjE1LDM4LjQzYzQuNDEsMCw4LTMuNTksOC04YzAtNC40MS0zLjU5LTgtOC04Yy00LjQxLDAtOCwzLjU5LTgsOEMyLjE1LDM0Ljg0LDUuNzQsMzguNDMsMTAuMTUsMzguNDN6CgkgTTEwLjE1LDIzLjQ5YzMuODMsMCw2Ljk0LDMuMTEsNi45NCw2Ljk0YzAsMy44My0zLjExLDYuOTQtNi45NCw2Ljk0Yy0zLjgzLDAtNi45NC0zLjExLTYuOTQtNi45NAoJQzMuMjEsMjYuNiw2LjMzLDIzLjQ5LDEwLjE1LDIzLjQ5TDEwLjE1LDIzLjQ5eiIvPgo8cGF0aCBmaWxsPSIjQzBDMEJGIiBkPSJNNi45OCw1My41OWMwLjEsMC4xLDAuMjQsMC4xNSwwLjM3LDAuMTVzMC4yNy0wLjA1LDAuMzctMC4xNWwyLjQyLTIuNDJsMi40MywyLjQzCgljMC4xLDAuMSwwLjI0LDAuMTUsMC4zNywwLjE1YzAuMTQsMCwwLjI3LTAuMDUsMC4zNy0wLjE1YzAuMjEtMC4yMSwwLjIxLTAuNTQsMC0wLjc1bC0yLjQzLTIuNDNMMTMuMzIsNDgKCWMwLjIxLTAuMjEsMC4yMS0wLjU0LDAtMC43NWMtMC4yMS0wLjIxLTAuNTQtMC4yMS0wLjc1LDBsLTIuNDIsMi40MmwtMi40MS0yLjQxYy0wLjIxLTAuMjEtMC41NC0wLjIxLTAuNzUsMAoJYy0wLjIxLDAuMjEtMC4yMSwwLjU0LDAsMC43NWwyLjQxLDIuNDFsLTIuNDIsMi40MkM2Ljc3LDUzLjA1LDYuNzcsNTMuMzksNi45OCw1My41OUw2Ljk4LDUzLjU5eiIvPgo8cGF0aCBmaWxsPSIjQzBDMEJGIiBkPSJNMTAuMTUsNTguNDNjNC40MSwwLDgtMy41OSw4LThjMC00LjQxLTMuNTktOC04LThjLTQuNDEsMC04LDMuNTktOCw4QzIuMTUsNTQuODQsNS43NCw1OC40MywxMC4xNSw1OC40M3oKCSBNMTAuMTUsNDMuNDljMy44MywwLDYuOTQsMy4xMSw2Ljk0LDYuOTRjMCwzLjgzLTMuMTEsNi45NC02Ljk0LDYuOTRjLTMuODMsMC02Ljk0LTMuMTEtNi45NC02Ljk0CglDMy4yMSw0Ni42LDYuMzMsNDMuNDksMTAuMTUsNDMuNDlMMTAuMTUsNDMuNDl6Ii8+CjxwYXRoIGZpbGw9IiM2QUE5REQiIGQ9Ik02Ljk4LDczLjU5YzAuMSwwLjEsMC4yNCwwLjE1LDAuMzcsMC4xNXMwLjI3LTAuMDUsMC4zNy0wLjE1bDIuNDItMi40MmwyLjQzLDIuNDMKCWMwLjEsMC4xLDAuMjQsMC4xNSwwLjM3LDAuMTVjMC4xNCwwLDAuMjctMC4wNSwwLjM3LTAuMTVjMC4yMS0wLjIxLDAuMjEtMC41NCwwLTAuNzVsLTIuNDMtMi40M0wxMy4zMiw2OAoJYzAuMjEtMC4yMSwwLjIxLTAuNTQsMC0wLjc1Yy0wLjIxLTAuMjEtMC41NC0wLjIxLTAuNzUsMGwtMi40MiwyLjQybC0yLjQxLTIuNDFjLTAuMjEtMC4yMS0wLjU0LTAuMjEtMC43NSwwCgljLTAuMjEsMC4yMS0wLjIxLDAuNTQsMCwwLjc1bDIuNDEsMi40MWwtMi40MiwyLjQyQzYuNzcsNzMuMDUsNi43Nyw3My4zOSw2Ljk4LDczLjU5TDYuOTgsNzMuNTl6Ii8+CjxwYXRoIGZpbGw9IiM2QUE5REQiIGQ9Ik0xMC4xNSw3OC40M2M0LjQxLDAsOC0zLjU5LDgtOGMwLTQuNDEtMy41OS04LTgtOGMtNC40MSwwLTgsMy41OS04LDhDMi4xNSw3NC44NCw1Ljc0LDc4LjQzLDEwLjE1LDc4LjQzegoJIE0xMC4xNSw2My40OWMzLjgzLDAsNi45NCwzLjExLDYuOTQsNi45NGMwLDMuODMtMy4xMSw2Ljk0LTYuOTQsNi45NGMtMy44MywwLTYuOTQtMy4xMS02Ljk0LTYuOTQKCUMzLjIxLDY2LjYsNi4zMyw2My40OSwxMC4xNSw2My40OUwxMC4xNSw2My40OXoiLz4KPC9zdmc+';
 function BtnClearSearch() {
   var clearSearch = useClearSearch();
-  return /*#__PURE__*/createElement(Button, {
+  return /*#__PURE__*/React.createElement(Button, {
     className: cx(styles$h.btnClearSearch, commonInteractionStyles.visibleOnSearchOnly),
     onClick: clearSearch,
     "aria-label": "Clear",
     title: "Clear"
-  }, /*#__PURE__*/createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: cx(styles$h.icnClearnSearch)
   }));
 }
@@ -13941,7 +13949,7 @@ var styles$h = /*#__PURE__*/stylesheet.create(/*#__PURE__*/_extends$1({
 }), /*#__PURE__*/darkMode('btnClearSearch', HoverDark)));
 var SVGMagnifier = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDI2LjMuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSIyMHB4IiBoZWlnaHQ9IjQwcHgiIHZpZXdCb3g9IjAgMCAyMCA0MCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMjAgNDAiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZmlsbD0iIzg2ODY4NiIgZD0iTTEyLDguODFjMCwyLjA4LTEuNjgsMy43Ni0zLjc2LDMuNzZjLTIuMDgsMC0zLjc2LTEuNjgtMy43Ni0zLjc2CgljMC0yLjA4LDEuNjgtMy43NiwzLjc2LTMuNzZDMTAuMzIsNS4wNSwxMiw2LjczLDEyLDguODF6IE0xMS4yMywxMi43MmMtMC44MywwLjY0LTEuODcsMS4wMS0yLjk5LDEuMDFjLTIuNzIsMC00LjkyLTIuMi00LjkyLTQuOTIKCWMwLTIuNzIsMi4yLTQuOTIsNC45Mi00LjkyYzIuNzIsMCw0LjkyLDIuMiw0LjkyLDQuOTJjMCwxLjEzLTAuMzgsMi4xNi0xLjAxLDIuOTlsMy45NCwzLjkzYzAuMjUsMC4yNSwwLjI1LDAuNjYsMCwwLjkyCgljLTAuMjUsMC4yNS0wLjY2LDAuMjUtMC45MiwwTDExLjIzLDEyLjcyeiIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZmlsbD0iI0MwQzBCRiIgZD0iTTEyLDI4LjgxYzAsMi4wOC0xLjY4LDMuNzYtMy43NiwzLjc2Yy0yLjA4LDAtMy43Ni0xLjY4LTMuNzYtMy43NgoJYzAtMi4wOCwxLjY4LTMuNzYsMy43Ni0zLjc2QzEwLjMyLDI1LjA1LDEyLDI2LjczLDEyLDI4LjgxeiBNMTEuMjMsMzIuNzJjLTAuODMsMC42NC0xLjg3LDEuMDEtMi45OSwxLjAxCgljLTIuNzIsMC00LjkyLTIuMi00LjkyLTQuOTJjMC0yLjcyLDIuMi00LjkyLDQuOTItNC45MmMyLjcyLDAsNC45MiwyLjIsNC45Miw0LjkyYzAsMS4xMy0wLjM4LDIuMTYtMS4wMSwyLjk5bDMuOTQsMy45MwoJYzAuMjUsMC4yNSwwLjI1LDAuNjYsMCwwLjkyYy0wLjI1LDAuMjUtMC42NiwwLjI1LTAuOTIsMEwxMS4yMywzMi43MnoiLz4KPC9zdmc+';
 function IcnSearch() {
-  return /*#__PURE__*/createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     className: cx(styles$i.icnSearch)
   });
 }
@@ -13969,9 +13977,9 @@ function SearchContainer() {
   if (searchDisabled) {
     return null;
   }
-  return /*#__PURE__*/createElement(Flex, {
+  return /*#__PURE__*/React.createElement(Flex, {
     className: cx(styles$j.overlay)
-  }, /*#__PURE__*/createElement(Search, null), isSkinToneInSearch ? /*#__PURE__*/createElement(SkinTonePicker, null) : null);
+  }, /*#__PURE__*/React.createElement(Search, null), isSkinToneInSearch ? /*#__PURE__*/React.createElement(SkinTonePicker, null) : null);
 }
 function Search() {
   var closeAllOpenToggles = useCloseAllOpenToggles();
@@ -13984,9 +13992,9 @@ function Search() {
     _onChange = _useFilter.onChange;
   var input = SearchInputRef == null ? void 0 : SearchInputRef.current;
   var value = input == null ? void 0 : input.value;
-  return /*#__PURE__*/createElement(Relative, {
+  return /*#__PURE__*/React.createElement(Relative, {
     className: cx(styles$j.searchContainer)
-  }, /*#__PURE__*/createElement("input", {
+  }, /*#__PURE__*/React.createElement("input", {
     // eslint-disable-next-line jsx-a11y/no-autofocus
     autoFocus: autoFocus,
     "aria-label": 'Type to search for an emoji',
@@ -14000,13 +14008,13 @@ function Search() {
       _onChange((_event$target$value = event == null ? void 0 : (_event$target = event.target) == null ? void 0 : _event$target.value) != null ? _event$target$value : value);
     },
     ref: SearchInputRef
-  }), searchTerm ? /*#__PURE__*/createElement("div", {
+  }), searchTerm ? /*#__PURE__*/React.createElement("div", {
     role: "status",
     className: cx('epr-status-search-results', styles$j.visuallyHidden),
     "aria-live": "polite",
     id: "epr-search-id",
     "aria-atomic": "true"
-  }, statusSearchResults) : null, /*#__PURE__*/createElement(IcnSearch, null), /*#__PURE__*/createElement(BtnClearSearch, null));
+  }, statusSearchResults) : null, /*#__PURE__*/React.createElement(IcnSearch, null), /*#__PURE__*/React.createElement(BtnClearSearch, null));
 }
 var styles$j = /*#__PURE__*/stylesheet.create(/*#__PURE__*/_extends$1({
   overlay: {
@@ -14089,22 +14097,22 @@ var styles$j = /*#__PURE__*/stylesheet.create(/*#__PURE__*/_extends$1({
   }
 })));
 function Header() {
-  return /*#__PURE__*/createElement(Relative, {
+  return /*#__PURE__*/React.createElement(Relative, {
     className: cx('epr-header', commonInteractionStyles.hiddenOnReactions)
-  }, /*#__PURE__*/createElement(SearchContainer, null), /*#__PURE__*/createElement(CategoryNavigation, null));
+  }, /*#__PURE__*/React.createElement(SearchContainer, null), /*#__PURE__*/React.createElement(CategoryNavigation, null));
 }
 function EmojiPicker(props) {
-  return /*#__PURE__*/createElement(ElementRefContextProvider, null, /*#__PURE__*/createElement(PickerStyleTag, null), /*#__PURE__*/createElement(PickerConfigProvider, Object.assign({}, props), /*#__PURE__*/createElement(ContentControl, null)));
+  return /*#__PURE__*/React.createElement(ElementRefContextProvider, null, /*#__PURE__*/React.createElement(PickerStyleTag, null), /*#__PURE__*/React.createElement(PickerConfigProvider, Object.assign({}, props), /*#__PURE__*/React.createElement(ContentControl, null)));
 }
 function ContentControl() {
   var _useReactionsModeStat = useReactionsModeState(),
     reactionsDefaultOpen = _useReactionsModeStat[0];
   var allowExpandReactions = useAllowExpandReactions();
-  var _React$useState = useState(!reactionsDefaultOpen),
+  var _React$useState = React.useState(!reactionsDefaultOpen),
     renderAll = _React$useState[0],
     setRenderAll = _React$useState[1];
   var isOpen = useOpenConfig();
-  useEffect(function () {
+  React.useEffect(function () {
     if (reactionsDefaultOpen && !allowExpandReactions) {
       return;
     }
@@ -14115,7 +14123,7 @@ function ContentControl() {
   if (!isOpen) {
     return null;
   }
-  return /*#__PURE__*/createElement(PickerMain, null, /*#__PURE__*/createElement(Reactions, null), /*#__PURE__*/createElement(ExpandedPickerContent, {
+  return /*#__PURE__*/React.createElement(PickerMain, null, /*#__PURE__*/React.createElement(Reactions, null), /*#__PURE__*/React.createElement(ExpandedPickerContent, {
     renderAll: renderAll
   }));
 }
@@ -14124,10 +14132,10 @@ function ExpandedPickerContent(_ref) {
   if (!renderAll) {
     return null;
   }
-  return /*#__PURE__*/createElement(Fragment, null, /*#__PURE__*/createElement(Header, null), /*#__PURE__*/createElement(Body, null), /*#__PURE__*/createElement(Preview, null));
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Header, null), /*#__PURE__*/React.createElement(Body, null), /*#__PURE__*/React.createElement(Preview, null));
 }
 // eslint-disable-next-line complexity
-var EmojiPickerReact = /*#__PURE__*/memo(EmojiPicker, compareConfig);
+var EmojiPickerReact = /*#__PURE__*/React.memo(EmojiPicker, compareConfig);
 var ErrorBoundary = /*#__PURE__*/function (_React$Component) {
   _inheritsLoose(ErrorBoundary, _React$Component);
   function ErrorBoundary(props) {
@@ -14155,16 +14163,16 @@ var ErrorBoundary = /*#__PURE__*/function (_React$Component) {
     return this.props.children;
   };
   return ErrorBoundary;
-}(Component);
+}(React.Component);
 function EmojiPicker$1(props) {
   var MutableConfigRef = useDefineMutableConfig({
     onEmojiClick: props.onEmojiClick,
     onReactionClick: props.onReactionClick,
     onSkinToneChange: props.onSkinToneChange
   });
-  return /*#__PURE__*/createElement(ErrorBoundary, null, /*#__PURE__*/createElement(MutableConfigContext.Provider, {
+  return /*#__PURE__*/React.createElement(ErrorBoundary, null, /*#__PURE__*/React.createElement(MutableConfigContext.Provider, {
     value: MutableConfigRef
-  }, /*#__PURE__*/createElement(EmojiPickerReact, Object.assign({}, props))));
+  }, /*#__PURE__*/React.createElement(EmojiPickerReact, Object.assign({}, props))));
 }
 
 var DefaultContext = {
@@ -14174,7 +14182,7 @@ var DefaultContext = {
   style: undefined,
   attr: undefined
 };
-var IconContext = React.createContext && /*#__PURE__*/React.createContext(DefaultContext);
+var IconContext = React__default["default"].createContext && /*#__PURE__*/React__default["default"].createContext(DefaultContext);
 
 var _excluded = ["attr", "size", "title"];
 function _objectWithoutProperties(source, excluded) {
@@ -14268,14 +14276,14 @@ function _toPrimitive(t, r) {
 }
 function Tree2Element(tree) {
   return tree && tree.map(function (node, i) {
-    return /*#__PURE__*/React.createElement(node.tag, _objectSpread({
+    return /*#__PURE__*/React__default["default"].createElement(node.tag, _objectSpread({
       key: i
     }, node.attr), Tree2Element(node.child));
   });
 }
 function GenIcon(data) {
   return function (props) {
-    return /*#__PURE__*/React.createElement(IconBase, _extends({
+    return /*#__PURE__*/React__default["default"].createElement(IconBase, _extends({
       attr: _objectSpread({}, data.attr)
     }, props), Tree2Element(data.child));
   };
@@ -14290,7 +14298,7 @@ function IconBase(props) {
     var className;
     if (conf.className) className = conf.className;
     if (props.className) className = (className ? className + " " : "") + props.className;
-    return /*#__PURE__*/React.createElement("svg", _extends({
+    return /*#__PURE__*/React__default["default"].createElement("svg", _extends({
       stroke: "currentColor",
       fill: "currentColor",
       strokeWidth: "0"
@@ -14302,9 +14310,9 @@ function IconBase(props) {
       height: computedSize,
       width: computedSize,
       xmlns: "http://www.w3.org/2000/svg"
-    }), title && /*#__PURE__*/React.createElement("title", null, title), props.children);
+    }), title && /*#__PURE__*/React__default["default"].createElement("title", null, title), props.children);
   };
-  return IconContext !== undefined ? /*#__PURE__*/React.createElement(IconContext.Consumer, null, function (conf) {
+  return IconContext !== undefined ? /*#__PURE__*/React__default["default"].createElement(IconContext.Consumer, null, function (conf) {
     return elem(conf);
   }) : elem(DefaultContext);
 }
@@ -14351,7 +14359,7 @@ var TagSelector = function TagSelector(_ref) {
     showTagSelector = _ref.showTagSelector,
     setShowTagSelector = _ref.setShowTagSelector,
     allTags = _ref.allTags;
-  var _useState = useState('all'),
+  var _useState = React.useState('all'),
     _useState2 = _slicedToArray(_useState, 2),
     filterMode = _useState2[0],
     setFilterMode = _useState2[1];
@@ -14378,9 +14386,9 @@ var TagSelector = function TagSelector(_ref) {
         return allTags;
     }
   };
-  return /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/React__default["default"].createElement("div", {
     className: "tag-selector-wrapper"
-  }, /*#__PURE__*/React.createElement("button", {
+  }, /*#__PURE__*/React__default["default"].createElement("button", {
     type: "button",
     className: "rte-btn",
     onClick: function onClick(e) {
@@ -14389,13 +14397,13 @@ var TagSelector = function TagSelector(_ref) {
       setShowTagSelector(!showTagSelector);
     },
     title: "Configure allowed HTML tags"
-  }, /*#__PURE__*/React.createElement(FaCog, null)), showTagSelector && /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React__default["default"].createElement(FaCog, null)), showTagSelector && /*#__PURE__*/React__default["default"].createElement("div", {
     className: "tag-selector-popup"
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React__default["default"].createElement("div", {
     className: "tag-selector-header"
-  }, /*#__PURE__*/React.createElement("h3", null, "Allowed HTML Tags & Actions"), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React__default["default"].createElement("h3", null, "Allowed HTML Tags & Actions"), /*#__PURE__*/React__default["default"].createElement("div", {
     className: "tag-selector-actions"
-  }, /*#__PURE__*/React.createElement("button", {
+  }, /*#__PURE__*/React__default["default"].createElement("button", {
     type: "button",
     className: "close-btn",
     onClick: function onClick(e) {
@@ -14403,11 +14411,11 @@ var TagSelector = function TagSelector(_ref) {
       e.stopPropagation();
       setShowTagSelector(false);
     }
-  }, /*#__PURE__*/React.createElement(FaTimes, null)))), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React__default["default"].createElement(FaTimes, null)))), /*#__PURE__*/React__default["default"].createElement("div", {
     className: "tag-filter-container"
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React__default["default"].createElement("div", {
     className: "tag-filter-options"
-  }, /*#__PURE__*/React.createElement("button", {
+  }, /*#__PURE__*/React__default["default"].createElement("button", {
     type: "button",
     className: "filter-btn ".concat(filterMode === 'all' ? 'active' : ''),
     onClick: function onClick(e) {
@@ -14415,7 +14423,7 @@ var TagSelector = function TagSelector(_ref) {
       e.stopPropagation();
       setFilterMode('all');
     }
-  }, "All"), /*#__PURE__*/React.createElement("button", {
+  }, "All"), /*#__PURE__*/React__default["default"].createElement("button", {
     type: "button",
     className: "filter-btn ".concat(filterMode === 'selected' ? 'active' : ''),
     onClick: function onClick(e) {
@@ -14423,7 +14431,7 @@ var TagSelector = function TagSelector(_ref) {
       e.stopPropagation();
       setFilterMode('selected');
     }
-  }, "Selected"), /*#__PURE__*/React.createElement("button", {
+  }, "Selected"), /*#__PURE__*/React__default["default"].createElement("button", {
     type: "button",
     className: "filter-btn ".concat(filterMode === 'deselected' ? 'active' : ''),
     onClick: function onClick(e) {
@@ -14431,12 +14439,12 @@ var TagSelector = function TagSelector(_ref) {
       e.stopPropagation();
       setFilterMode('deselected');
     }
-  }, "Deselected")), /*#__PURE__*/React.createElement("div", {
+  }, "Deselected")), /*#__PURE__*/React__default["default"].createElement("div", {
     className: "tag-filter-info"
-  }, filterMode === 'all' && /*#__PURE__*/React.createElement("span", null, "Showing all ", allTags.length, " tags and actions"), filterMode === 'selected' && /*#__PURE__*/React.createElement("span", null, "Showing ", allowedTags.length, " selected tags and actions"), filterMode === 'deselected' && /*#__PURE__*/React.createElement("span", null, "Showing ", allTags.length - allowedTags.length, " deselected tags and actions"))), /*#__PURE__*/React.createElement("div", {
+  }, filterMode === 'all' && /*#__PURE__*/React__default["default"].createElement("span", null, "Showing all ", allTags.length, " tags and actions"), filterMode === 'selected' && /*#__PURE__*/React__default["default"].createElement("span", null, "Showing ", allowedTags.length, " selected tags and actions"), filterMode === 'deselected' && /*#__PURE__*/React__default["default"].createElement("span", null, "Showing ", allTags.length - allowedTags.length, " deselected tags and actions"))), /*#__PURE__*/React__default["default"].createElement("div", {
     className: "tag-selector-grid"
   }, getFilteredTags().map(function (tag) {
-    return /*#__PURE__*/React.createElement("div", {
+    return /*#__PURE__*/React__default["default"].createElement("div", {
       key: tag,
       className: "tag-item ".concat(allowedTags.includes(tag) ? 'selected' : ''),
       onClick: function onClick(e) {
@@ -14444,14 +14452,14 @@ var TagSelector = function TagSelector(_ref) {
         e.stopPropagation();
         toggleTag(tag);
       }
-    }, /*#__PURE__*/React.createElement("span", {
+    }, /*#__PURE__*/React__default["default"].createElement("span", {
       className: "tag-name"
-    }, tag), allowedTags.includes(tag) && /*#__PURE__*/React.createElement(FaCheck, {
+    }, tag), allowedTags.includes(tag) && /*#__PURE__*/React__default["default"].createElement(FaCheck, {
       className: "tag-check"
     }));
-  })), /*#__PURE__*/React.createElement("div", {
+  })), /*#__PURE__*/React__default["default"].createElement("div", {
     className: "tag-selector-footer"
-  }, /*#__PURE__*/React.createElement("span", null, allowedTags.length, " of ", allTags.length, " tags and actions selected"), /*#__PURE__*/React.createElement("button", {
+  }, /*#__PURE__*/React__default["default"].createElement("span", null, allowedTags.length, " of ", allTags.length, " tags and actions selected"), /*#__PURE__*/React__default["default"].createElement("button", {
     type: "button",
     onClick: function onClick(e) {
       e.preventDefault();
@@ -14469,12 +14477,12 @@ var Dropdown = function Dropdown(_ref2) {
     _ref2$width = _ref2.width,
     width = _ref2$width === void 0 ? "120px" : _ref2$width;
     _ref2.theme;
-  var _useState3 = useState(false),
+  var _useState3 = React.useState(false),
     _useState4 = _slicedToArray(_useState3, 2),
     isOpen = _useState4[0],
     setIsOpen = _useState4[1];
-  var dropdownRef = useRef(null);
-  useEffect(function () {
+  var dropdownRef = React.useRef(null);
+  React.useEffect(function () {
     var handleClickOutside = function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsOpen(false);
@@ -14496,10 +14504,10 @@ var Dropdown = function Dropdown(_ref2) {
     });
     return option ? option.label : placeholder;
   };
-  return /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/React__default["default"].createElement("div", {
     className: "rte-dropdown",
     ref: dropdownRef
-  }, /*#__PURE__*/React.createElement("button", {
+  }, /*#__PURE__*/React__default["default"].createElement("button", {
     type: "button",
     className: "rte-btn rte-dropdown-btn",
     onClick: function onClick(e) {
@@ -14507,19 +14515,19 @@ var Dropdown = function Dropdown(_ref2) {
       e.stopPropagation();
       setIsOpen(!isOpen);
     }
-  }, icon && /*#__PURE__*/React.createElement("span", {
+  }, icon && /*#__PURE__*/React__default["default"].createElement("span", {
     className: "rte-dropdown-icon"
-  }, icon), /*#__PURE__*/React.createElement("span", {
+  }, icon), /*#__PURE__*/React__default["default"].createElement("span", {
     className: "rte-dropdown-text"
-  }, getDisplayLabel()), /*#__PURE__*/React.createElement(FaCaretDown, {
+  }, getDisplayLabel()), /*#__PURE__*/React__default["default"].createElement(FaCaretDown, {
     className: "rte-dropdown-arrow"
-  })), isOpen && /*#__PURE__*/React.createElement("div", {
+  })), isOpen && /*#__PURE__*/React__default["default"].createElement("div", {
     className: "rte-dropdown-menu",
     style: {
       width: width
     }
   }, options.map(function (option, index) {
-    return /*#__PURE__*/React.createElement("div", {
+    return /*#__PURE__*/React__default["default"].createElement("div", {
       key: index,
       className: "rte-dropdown-item ".concat(value === option.value ? 'selected' : ''),
       onClick: function onClick(e) {
@@ -14535,16 +14543,16 @@ var Dropdown = function Dropdown(_ref2) {
 // Toolbar buttons - combined into a single array
 var toolbarButtons = [{
   cmd: "undo",
-  icon: /*#__PURE__*/React.createElement(FaUndo, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaUndo, null),
   tooltip: "Undo"
 }, {
   cmd: "redo",
-  icon: /*#__PURE__*/React.createElement(FaRedo, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaRedo, null),
   tooltip: "Redo"
 }, {
   type: "dropdown",
   cmd: "formatBlock",
-  icon: /*#__PURE__*/React.createElement(FaHeading, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaHeading, null),
   options: [{
     label: "Normal",
     value: "p"
@@ -14569,112 +14577,112 @@ var toolbarButtons = [{
   }]
 }, {
   cmd: "bold",
-  icon: /*#__PURE__*/React.createElement(FaBold, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaBold, null),
   tooltip: "Bold"
 }, {
   cmd: "italic",
-  icon: /*#__PURE__*/React.createElement(FaItalic, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaItalic, null),
   tooltip: "Italic"
 }, {
   cmd: "underline",
-  icon: /*#__PURE__*/React.createElement(FaUnderline, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaUnderline, null),
   tooltip: "Underline"
 }, {
   cmd: "strikeThrough",
-  icon: /*#__PURE__*/React.createElement(FaStrikethrough, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaStrikethrough, null),
   tooltip: "Strikethrough"
 }, {
   cmd: "superscript",
-  icon: /*#__PURE__*/React.createElement(FaSuperscript, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaSuperscript, null),
   tooltip: "Superscript"
 }, {
   cmd: "subscript",
-  icon: /*#__PURE__*/React.createElement(FaSubscript, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaSubscript, null),
   tooltip: "Subscript"
 }, {
   cmd: "toUpperCase",
-  icon: /*#__PURE__*/React.createElement(FaTextHeight, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaTextHeight, null),
   tooltip: "Uppercase"
 }, {
   cmd: "toLowerCase",
-  icon: /*#__PURE__*/React.createElement(FaTextWidth, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaTextWidth, null),
   tooltip: "Lowercase"
 }, {
   cmd: "justifyLeft",
-  icon: /*#__PURE__*/React.createElement(FaAlignLeft, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaAlignLeft, null),
   tooltip: "Align Left"
 }, {
   cmd: "justifyCenter",
-  icon: /*#__PURE__*/React.createElement(FaAlignCenter, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaAlignCenter, null),
   tooltip: "Align Center"
 }, {
   cmd: "justifyRight",
-  icon: /*#__PURE__*/React.createElement(FaAlignRight, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaAlignRight, null),
   tooltip: "Align Right"
 }, {
   cmd: "formatBlock",
   arg: "blockquote",
-  icon: /*#__PURE__*/React.createElement(FaQuoteRight, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaQuoteRight, null),
   tooltip: "Blockquote"
 }, {
   cmd: "toggleHTML",
-  icon: /*#__PURE__*/React.createElement(FaCode, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaCode, null),
   tooltip: "Toggle HTML"
 }, {
   cmd: "createLink",
-  icon: /*#__PURE__*/React.createElement(FaLink, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaLink, null),
   tooltip: "Insert Link"
 }, {
   cmd: "unlink",
-  icon: /*#__PURE__*/React.createElement(FaUnlink, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaUnlink, null),
   tooltip: "Remove Link"
 }, {
   cmd: "insertImage",
-  icon: /*#__PURE__*/React.createElement(FaImage, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaImage, null),
   tooltip: "Insert Image"
 }, {
   cmd: "insertTableGrid",
-  icon: /*#__PURE__*/React.createElement(FaTable, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaTable, null),
   tooltip: "Insert Table"
 }, {
   cmd: "insertEmoji",
-  icon: /*#__PURE__*/React.createElement(FaSmile, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaSmile, null),
   tooltip: "Insert Emoji"
 }, {
   cmd: "insertHorizontalRule",
-  icon: /*#__PURE__*/React.createElement(FaMinus, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaMinus, null),
   tooltip: "Insert Horizontal Line"
 }, {
   cmd: "textColor",
-  icon: /*#__PURE__*/React.createElement(FaPalette, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaPalette, null),
   tooltip: "Text Color"
 }, {
   cmd: "highlight",
-  icon: /*#__PURE__*/React.createElement(FaHighlighter, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaHighlighter, null),
   tooltip: "Highlight Text"
 }, {
   cmd: "cut",
-  icon: /*#__PURE__*/React.createElement(FaCut, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaCut, null),
   tooltip: "Cut"
 }, {
   cmd: "copy",
-  icon: /*#__PURE__*/React.createElement(FaCopy, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaCopy, null),
   tooltip: "Copy"
 }, {
   cmd: "paste",
-  icon: /*#__PURE__*/React.createElement(FaPaste, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaPaste, null),
   tooltip: "Paste"
 }, {
   cmd: "removeText",
-  icon: /*#__PURE__*/React.createElement(FaTrash, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaTrash, null),
   tooltip: "Delete"
 }, {
   cmd: "selectAll",
-  icon: /*#__PURE__*/React.createElement(FaMousePointer, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaMousePointer, null),
   tooltip: "Select All"
 }, {
   cmd: "search",
-  icon: /*#__PURE__*/React.createElement(FaSearch, null),
+  icon: /*#__PURE__*/React__default["default"].createElement(FaSearch, null),
   tooltip: "Search"
 }];
 
@@ -14763,35 +14771,35 @@ function Editor(_ref3) {
     storageKey = _ref3$storageKey === void 0 ? "rte-editor-content" : _ref3$storageKey,
     _ref3$plugins = _ref3.plugins,
     plugins = _ref3$plugins === void 0 ? [] : _ref3$plugins;
-  var editorRef = useRef(null);
-  var editorContainerRef = useRef(null);
-  var fileRef = useRef(null);
-  var colorInputRef = useRef(null);
-  var highlightColorRef = useRef(null);
-  var _useState5 = useState(false),
+  var editorRef = React.useRef(null);
+  var editorContainerRef = React.useRef(null);
+  var fileRef = React.useRef(null);
+  var colorInputRef = React.useRef(null);
+  var highlightColorRef = React.useRef(null);
+  var _useState5 = React.useState(false),
     _useState6 = _slicedToArray(_useState5, 2),
     focused = _useState6[0],
     setFocused = _useState6[1];
-  var _useState7 = useState(false),
+  var _useState7 = React.useState(false),
     _useState8 = _slicedToArray(_useState7, 2),
     isPreview = _useState8[0],
     setIsPreview = _useState8[1];
-  var _useState9 = useState(false),
+  var _useState9 = React.useState(false),
     _useState0 = _slicedToArray(_useState9, 2),
     showTableGrid = _useState0[0],
     setShowTableGrid = _useState0[1];
-  var _useState1 = useState({
+  var _useState1 = React.useState({
       rows: 0,
       cols: 0
     }),
     _useState10 = _slicedToArray(_useState1, 2),
     gridSize = _useState10[0],
     setGridSize = _useState10[1];
-  var _useState11 = useState(false),
+  var _useState11 = React.useState(false),
     _useState12 = _slicedToArray(_useState11, 2),
     showEmojiPicker = _useState12[0],
     setShowEmojiPicker = _useState12[1];
-  var _useState13 = useState(""),
+  var _useState13 = React.useState(""),
     _useState14 = _slicedToArray(_useState13, 2),
     previewContent = _useState14[0],
     setPreviewContent = _useState14[1];
@@ -14805,17 +14813,17 @@ function Editor(_ref3) {
       return plugin.tag;
     });
   };
-  var pluginTags = useMemo(function () {
+  var pluginTags = React.useMemo(function () {
     return getPluginTags(plugins);
   }, [plugins]);
 
   // The complete list of tags for the TagSelector - memoized
-  var allTags = useMemo(function () {
+  var allTags = React.useMemo(function () {
     return ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'strong', 'em', 'u', 's', 'sup', 'sub', 'blockquote', 'pre', 'code', 'ul', 'ol', 'li', 'a', 'img', 'table', 'thead', 'tbody', 'tr', 'th', 'td', 'br', 'hr', 'span', 'div', 'cut', 'copy', 'paste', 'remove', 'text-color', 'highlight-color', 'emoji', 'select', 'uppercase', 'lowercase', 'align-left', 'align-center', 'align-right', 'remove-link'].concat(_toConsumableArray(pluginTags));
   }, [pluginTags]);
 
   // Initialize allowedTags with pluginTags included
-  var _useState15 = useState(function () {
+  var _useState15 = React.useState(function () {
       var defaultAllowedTags = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'strong', 'em', 'u', 's', 'sup', 'sub', 'blockquote', 'pre', 'code', 'ul', 'ol', 'li', 'a', 'img', 'table', 'thead', 'tbody', 'tr', 'th', 'td', 'br', 'hr', 'span', 'div', 'cut', 'copy', 'paste', 'remove', 'text-color', 'highlight-color', 'emoji', 'select', 'uppercase', 'lowercase', 'align-left', 'align-center', 'align-right', 'remove-link'].concat(_toConsumableArray(pluginTags));
       if (propAllowedTags) {
         // Merge propAllowedTags with pluginTags, making sure to include all pluginTags
@@ -14826,39 +14834,39 @@ function Editor(_ref3) {
     _useState16 = _slicedToArray(_useState15, 2),
     allowedTags = _useState16[0],
     setAllowedTags = _useState16[1];
-  var _useState17 = useState(false),
+  var _useState17 = React.useState(false),
     _useState18 = _slicedToArray(_useState17, 2),
     showTagSelector = _useState18[0],
     setShowTagSelector = _useState18[1];
-  var _useState19 = useState(""),
+  var _useState19 = React.useState(""),
     _useState20 = _slicedToArray(_useState19, 2),
     searchQuery = _useState20[0],
     setSearchQuery = _useState20[1];
-  var _useState21 = useState([]),
+  var _useState21 = React.useState([]),
     _useState22 = _slicedToArray(_useState21, 2),
     searchResults = _useState22[0],
     setSearchResults = _useState22[1];
-  var _useState23 = useState(-1),
+  var _useState23 = React.useState(-1),
     _useState24 = _slicedToArray(_useState23, 2),
     currentSearchIndex = _useState24[0],
     setCurrentSearchIndex = _useState24[1];
-  var _useState25 = useState(false),
+  var _useState25 = React.useState(false),
     _useState26 = _slicedToArray(_useState25, 2),
     showSearch = _useState26[0],
     setShowSearch = _useState26[1];
-  var _useState27 = useState(0),
+  var _useState27 = React.useState(0),
     _useState28 = _slicedToArray(_useState27, 2),
     searchCount = _useState28[0],
     setSearchCount = _useState28[1];
-  var _useState29 = useState(null),
+  var _useState29 = React.useState(null),
     _useState30 = _slicedToArray(_useState29, 2),
     selectedImage = _useState30[0],
     setSelectedImage = _useState30[1];
-  var _useState31 = useState(false),
+  var _useState31 = React.useState(false),
     _useState32 = _slicedToArray(_useState31, 2),
     showImageEditor = _useState32[0],
     setShowImageEditor = _useState32[1];
-  var _useState33 = useState({
+  var _useState33 = React.useState({
       width: '',
       height: '',
       alignment: '',
@@ -14873,15 +14881,15 @@ function Editor(_ref3) {
     _useState34 = _slicedToArray(_useState33, 2),
     imageProps = _useState34[0],
     setImageProps = _useState34[1];
-  var _useState35 = useState(1),
+  var _useState35 = React.useState(1),
     _useState36 = _slicedToArray(_useState35, 2),
     aspectRatio = _useState36[0],
     setAspectRatio = _useState36[1];
-  var _useState37 = useState(false),
+  var _useState37 = React.useState(false),
     _useState38 = _slicedToArray(_useState37, 2),
     isResizing = _useState38[0],
     setIsResizing = _useState38[1];
-  var _useState39 = useState({
+  var _useState39 = React.useState({
       startX: 0,
       startY: 0,
       startWidth: 0,
@@ -14891,7 +14899,7 @@ function Editor(_ref3) {
     _useState40 = _slicedToArray(_useState39, 2),
     resizeData = _useState40[0];
     _useState40[1];
-  var _useState41 = useState({
+  var _useState41 = React.useState({
       display: 'none',
       left: 0,
       top: 0,
@@ -14901,11 +14909,11 @@ function Editor(_ref3) {
     _useState42 = _slicedToArray(_useState41, 2);
     _useState42[0];
     var setOverlayStyle = _useState42[1];
-  var _useState43 = useState('p'),
+  var _useState43 = React.useState('p'),
     _useState44 = _slicedToArray(_useState43, 2),
     currentHeading = _useState44[0],
     setCurrentHeading = _useState44[1];
-  var _useState45 = useState('16px'),
+  var _useState45 = React.useState('16px'),
     _useState46 = _slicedToArray(_useState45, 2);
     _useState46[0];
     var setCurrentFontSize = _useState46[1];
@@ -14915,17 +14923,17 @@ function Editor(_ref3) {
 
   // Initialize theme with safe default for SSR (prevents hydration mismatch)
   // Will be updated from localStorage after mount on client side
-  var _useState47 = useState('light'),
+  var _useState47 = React.useState('light'),
     _useState48 = _slicedToArray(_useState47, 2),
     theme = _useState48[0],
     setTheme = _useState48[1];
-  var _useState49 = useState(false),
+  var _useState49 = React.useState(false),
     _useState50 = _slicedToArray(_useState49, 2),
     mounted = _useState50[0],
     setMounted = _useState50[1];
 
   // Active formatting state
-  var _useState51 = useState({
+  var _useState51 = React.useState({
       bold: false,
       italic: false,
       underline: false,
@@ -14941,15 +14949,15 @@ function Editor(_ref3) {
     _useState52 = _slicedToArray(_useState51, 2),
     activeFormatting = _useState52[0],
     setActiveFormatting = _useState52[1];
-  var savedSelectionRef = useRef(null);
-  var savedTableSelectionRef = useRef(null);
-  var savedEmojiSelectionRef = useRef(null);
-  var isSettingContent = useRef(false);
-  var lastValueRef = useRef(value);
-  var lastHtmlRef = useRef("");
+  var savedSelectionRef = React.useRef(null);
+  var savedTableSelectionRef = React.useRef(null);
+  var savedEmojiSelectionRef = React.useRef(null);
+  var isSettingContent = React.useRef(false);
+  var lastValueRef = React.useRef(value);
+  var lastHtmlRef = React.useRef("");
 
   // Initialize theme from localStorage after mount (client-side only)
-  useEffect(function () {
+  React.useEffect(function () {
     setMounted(true);
     try {
       var savedTheme = localStorage.getItem(GLOBAL_THEME_KEY);
@@ -14965,7 +14973,7 @@ function Editor(_ref3) {
   }, []);
 
   // Save theme preference to localStorage whenever it changes (only after mount)
-  useEffect(function () {
+  React.useEffect(function () {
     if (mounted) {
       try {
         localStorage.setItem(GLOBAL_THEME_KEY, theme);
@@ -15019,7 +15027,7 @@ function Editor(_ref3) {
   };
 
   // Listen for selection changes to update active formatting
-  useEffect(function () {
+  React.useEffect(function () {
     var handleSelectionChange = function handleSelectionChange() {
       updateActiveFormatting();
     };
@@ -15030,19 +15038,19 @@ function Editor(_ref3) {
   }, []);
 
   // Update active formatting when editor is focused
-  useEffect(function () {
+  React.useEffect(function () {
     if (focused) {
       updateActiveFormatting();
     }
   }, [focused]);
 
   // Update active formatting after content changes (only when not setting content programmatically)
-  useEffect(function () {
+  React.useEffect(function () {
     if (!isSettingContent.current) {
       updateActiveFormatting();
     }
   }, [value]);
-  useEffect(function () {
+  React.useEffect(function () {
     if (!storageKey) return;
     try {
       var savedTags = localStorage.getItem("".concat(storageKey, "-allowedTags"));
@@ -15065,7 +15073,7 @@ function Editor(_ref3) {
   }, [storageKey, propAllowedTags]);
 
   // Sync allowedTags with propAllowedTags when it changes
-  useEffect(function () {
+  React.useEffect(function () {
     if (propAllowedTags && Array.isArray(propAllowedTags)) {
       // Merge propAllowedTags with pluginTags
       var mergedTags = _toConsumableArray(new Set([].concat(_toConsumableArray(propAllowedTags), _toConsumableArray(pluginTags))));
@@ -15159,7 +15167,7 @@ function Editor(_ref3) {
     }
     handleChange();
   };
-  useEffect(function () {
+  React.useEffect(function () {
     if (!storageKey) return;
     try {
       localStorage.setItem("".concat(storageKey, "-allowedTags"), JSON.stringify(allowedTags));
@@ -15169,7 +15177,7 @@ function Editor(_ref3) {
   }, [allowedTags, storageKey]);
 
   // Update the useEffect that handles value changes
-  useEffect(function () {
+  React.useEffect(function () {
     if (editorRef.current && value !== undefined) {
       var sanitizedValue = sanitizeHTML(value, allowedTags);
 
@@ -15203,7 +15211,7 @@ function Editor(_ref3) {
       }
     }
   }, [value, allowedTags, isPreview]);
-  useEffect(function () {
+  React.useEffect(function () {
     var updateFormattingState = function updateFormattingState() {
       var selection = window.getSelection();
       if (selection.rangeCount > 0) {
@@ -15240,7 +15248,7 @@ function Editor(_ref3) {
   }, []);
 
   // Handle Enter key - FIXED to handle multiple consecutive Enter presses
-  useEffect(function () {
+  React.useEffect(function () {
     if (!editorRef.current) return;
     // Replace the entire handleKeyDown function with this updated version
     var handleKeyDown = function handleKeyDown(e) {
@@ -15308,7 +15316,7 @@ function Editor(_ref3) {
       }
     };
   }, [allowedTags]);
-  useEffect(function () {
+  React.useEffect(function () {
     var editor = editorRef.current;
     if (!editor) return;
     var handleImageClick = function handleImageClick(e) {
@@ -15358,7 +15366,7 @@ function Editor(_ref3) {
       height: imgRect.height
     });
   };
-  useEffect(function () {
+  React.useEffect(function () {
     var handleMouseMove = function handleMouseMove(e) {
       if (!isResizing || !selectedImage) return;
       var deltaX = e.clientX - resizeData.startX;
@@ -15558,7 +15566,7 @@ function Editor(_ref3) {
     });
     return tempDiv.innerHTML;
   };
-  useEffect(function () {
+  React.useEffect(function () {
     if (!editorRef.current) return;
     var handlePaste = function handlePaste(e) {
       e.preventDefault();
@@ -16239,7 +16247,7 @@ function Editor(_ref3) {
       console.error("Error changing ordered list style:", error);
     }
   };
-  return /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/React__default["default"].createElement("div", {
     ref: editorContainerRef,
     className: "rte-container ".concat(focused ? "rte-focused" : "", " ").concat(height === "auto" ? "" : height === "responsive" ? "" : typeof height === "number" ? "fixed-height" : "", " ").concat(width === "auto" ? "" : width === "responsive" ? "" : typeof width === "number" ? "fixed-width" : "", " ").concat(className, " rte-theme-").concat(theme),
     style: _objectSpread2(_objectSpread2(_objectSpread2({}, typeof height === "number" ? {
@@ -16249,142 +16257,142 @@ function Editor(_ref3) {
     } : {}), {}, {
       minHeight: "".concat(minHeight, "px")
     })
-  }, showImageEditor && /*#__PURE__*/React.createElement("div", {
+  }, showImageEditor && /*#__PURE__*/React__default["default"].createElement("div", {
     className: "image-editor-modal"
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React__default["default"].createElement("div", {
     className: "image-editor-content"
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React__default["default"].createElement("div", {
     className: "editor-flex"
-  }, /*#__PURE__*/React.createElement("h3", null, "Edit Image"), /*#__PURE__*/React.createElement("button", {
+  }, /*#__PURE__*/React__default["default"].createElement("h3", null, "Edit Image"), /*#__PURE__*/React__default["default"].createElement("button", {
     className: "image-editor-close-btn",
     onClick: function onClick() {
       return setShowImageEditor(false);
     },
     "aria-label": "Close"
-  }, /*#__PURE__*/React.createElement(FaTimes, null))), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React__default["default"].createElement(FaTimes, null))), /*#__PURE__*/React__default["default"].createElement("div", {
     className: "image-editor-row"
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React__default["default"].createElement("div", {
     className: "image-editor-col"
-  }, /*#__PURE__*/React.createElement("label", null, "Width (px)"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React__default["default"].createElement("label", null, "Width (px)"), /*#__PURE__*/React__default["default"].createElement("input", {
     type: "number",
     value: parseInt(imageProps.width) || '',
     onChange: function onChange(e) {
       return handleImagePropChange('width', "".concat(e.target.value, "px"));
     }
-  })), /*#__PURE__*/React.createElement("div", {
+  })), /*#__PURE__*/React__default["default"].createElement("div", {
     className: "image-editor-col"
-  }, /*#__PURE__*/React.createElement("label", null, "Height (px)"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React__default["default"].createElement("label", null, "Height (px)"), /*#__PURE__*/React__default["default"].createElement("input", {
     type: "number",
     value: parseInt(imageProps.height) || '',
     onChange: function onChange(e) {
       return handleImagePropChange('height', "".concat(e.target.value, "px"));
     }
-  })), /*#__PURE__*/React.createElement("div", {
+  })), /*#__PURE__*/React__default["default"].createElement("div", {
     className: "image-editor-col"
-  }, /*#__PURE__*/React.createElement("label", null, /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React__default["default"].createElement("label", null, /*#__PURE__*/React__default["default"].createElement("input", {
     type: "checkbox",
     checked: imageProps.lockAspectRatio,
     onChange: function onChange(e) {
       return handleImagePropChange('lockAspectRatio', e.target.checked);
     }
-  }), "Lock Ratio"))), /*#__PURE__*/React.createElement("div", {
+  }), "Lock Ratio"))), /*#__PURE__*/React__default["default"].createElement("div", {
     className: "image-editor-row"
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React__default["default"].createElement("div", {
     className: "image-editor-col"
-  }, /*#__PURE__*/React.createElement("label", null, "Alignment"), /*#__PURE__*/React.createElement("select", {
+  }, /*#__PURE__*/React__default["default"].createElement("label", null, "Alignment"), /*#__PURE__*/React__default["default"].createElement("select", {
     value: imageProps.alignment,
     onChange: function onChange(e) {
       return handleImagePropChange('alignment', e.target.value);
     }
-  }, /*#__PURE__*/React.createElement("option", {
+  }, /*#__PURE__*/React__default["default"].createElement("option", {
     value: ""
-  }, "None"), /*#__PURE__*/React.createElement("option", {
+  }, "None"), /*#__PURE__*/React__default["default"].createElement("option", {
     value: "left"
-  }, "Left"), /*#__PURE__*/React.createElement("option", {
+  }, "Left"), /*#__PURE__*/React__default["default"].createElement("option", {
     value: "right"
-  }, "Right"))), /*#__PURE__*/React.createElement("div", {
+  }, "Right"))), /*#__PURE__*/React__default["default"].createElement("div", {
     className: "image-editor-col"
-  }, /*#__PURE__*/React.createElement("label", null, "Margin (px)"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React__default["default"].createElement("label", null, "Margin (px)"), /*#__PURE__*/React__default["default"].createElement("input", {
     type: "text",
     value: imageProps.margin,
     onChange: function onChange(e) {
       return handleImagePropChange('margin', e.target.value);
     },
     placeholder: "e.g. 10px"
-  }))), /*#__PURE__*/React.createElement("div", {
+  }))), /*#__PURE__*/React__default["default"].createElement("div", {
     className: "image-editor-row"
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React__default["default"].createElement("div", {
     className: "image-editor-col"
-  }, /*#__PURE__*/React.createElement("label", null, "Border Width (px)"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React__default["default"].createElement("label", null, "Border Width (px)"), /*#__PURE__*/React__default["default"].createElement("input", {
     type: "number",
     value: parseInt(imageProps.borderWidth) || '',
     onChange: function onChange(e) {
       return handleImagePropChange('borderWidth', "".concat(e.target.value, "px"));
     }
-  })), /*#__PURE__*/React.createElement("div", {
+  })), /*#__PURE__*/React__default["default"].createElement("div", {
     className: "image-editor-col"
-  }, /*#__PURE__*/React.createElement("label", null, "Border Style"), /*#__PURE__*/React.createElement("select", {
+  }, /*#__PURE__*/React__default["default"].createElement("label", null, "Border Style"), /*#__PURE__*/React__default["default"].createElement("select", {
     value: imageProps.borderStyle,
     onChange: function onChange(e) {
       return handleImagePropChange('borderStyle', e.target.value);
     }
-  }, /*#__PURE__*/React.createElement("option", {
+  }, /*#__PURE__*/React__default["default"].createElement("option", {
     value: "none"
-  }, "None"), /*#__PURE__*/React.createElement("option", {
+  }, "None"), /*#__PURE__*/React__default["default"].createElement("option", {
     value: "solid"
-  }, "Solid"), /*#__PURE__*/React.createElement("option", {
+  }, "Solid"), /*#__PURE__*/React__default["default"].createElement("option", {
     value: "dashed"
-  }, "Dashed"), /*#__PURE__*/React.createElement("option", {
+  }, "Dashed"), /*#__PURE__*/React__default["default"].createElement("option", {
     value: "dotted"
-  }, "Dotted"), /*#__PURE__*/React.createElement("option", {
+  }, "Dotted"), /*#__PURE__*/React__default["default"].createElement("option", {
     value: "double"
-  }, "Double"))), /*#__PURE__*/React.createElement("div", {
+  }, "Double"))), /*#__PURE__*/React__default["default"].createElement("div", {
     className: "image-editor-col"
-  }, /*#__PURE__*/React.createElement("label", null, "Border Color"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React__default["default"].createElement("label", null, "Border Color"), /*#__PURE__*/React__default["default"].createElement("input", {
     type: "color",
     value: imageProps.borderColor,
     onChange: function onChange(e) {
       return handleImagePropChange('borderColor', e.target.value);
     }
-  }))), /*#__PURE__*/React.createElement("div", {
+  }))), /*#__PURE__*/React__default["default"].createElement("div", {
     className: "image-editor-row"
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React__default["default"].createElement("div", {
     className: "image-editor-col"
-  }, /*#__PURE__*/React.createElement("label", null, "Border Radius (px)"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React__default["default"].createElement("label", null, "Border Radius (px)"), /*#__PURE__*/React__default["default"].createElement("input", {
     type: "text",
     value: imageProps.borderRadius,
     onChange: function onChange(e) {
       return handleImagePropChange('borderRadius', e.target.value);
     },
     placeholder: "e.g. 8px"
-  })), /*#__PURE__*/React.createElement("div", {
+  })), /*#__PURE__*/React__default["default"].createElement("div", {
     className: "image-editor-col"
-  }, /*#__PURE__*/React.createElement("label", null, "Alt Text"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React__default["default"].createElement("label", null, "Alt Text"), /*#__PURE__*/React__default["default"].createElement("input", {
     type: "text",
     value: imageProps.altText,
     onChange: function onChange(e) {
       return handleImagePropChange('altText', e.target.value);
     },
     placeholder: "Image description"
-  }))), /*#__PURE__*/React.createElement("div", {
+  }))), /*#__PURE__*/React__default["default"].createElement("div", {
     className: "image-editor-actions"
-  }, /*#__PURE__*/React.createElement("button", {
+  }, /*#__PURE__*/React__default["default"].createElement("button", {
     onClick: applyImageChanges
-  }, "Apply Changes"), /*#__PURE__*/React.createElement("button", {
+  }, "Apply Changes"), /*#__PURE__*/React__default["default"].createElement("button", {
     onClick: function onClick() {
       return setShowImageEditor(false);
     }
-  }, "Cancel"), /*#__PURE__*/React.createElement("button", {
+  }, "Cancel"), /*#__PURE__*/React__default["default"].createElement("button", {
     onClick: removeImage,
     className: "remove-btn"
-  }, "Remove Image")))), /*#__PURE__*/React.createElement("div", {
+  }, "Remove Image")))), /*#__PURE__*/React__default["default"].createElement("div", {
     className: "rte-toolbar"
   }, toolbarButtons.map(function (b, i) {
     if (b.type === "dropdown") {
       var filteredOptions = b.options.filter(function (opt) {
         return opt.value === 'p' || allowedTags.includes(opt.value);
       });
-      return /*#__PURE__*/React.createElement("select", {
+      return /*#__PURE__*/React__default["default"].createElement("select", {
         key: i,
         className: "list-style-dropdown rte-btn",
         title: b.cmd,
@@ -16393,7 +16401,7 @@ function Editor(_ref3) {
         },
         value: currentHeading
       }, filteredOptions.map(function (opt, j) {
-        return /*#__PURE__*/React.createElement("option", {
+        return /*#__PURE__*/React__default["default"].createElement("option", {
           key: j,
           value: opt.value
         }, opt.label);
@@ -16401,28 +16409,28 @@ function Editor(_ref3) {
     }
     if (!shouldShowButton(b.cmd, allowedTags)) return null;
     if (b.cmd === "insertTableGrid") {
-      return /*#__PURE__*/React.createElement("div", {
+      return /*#__PURE__*/React__default["default"].createElement("div", {
         key: i,
         className: "table-grid-wrapper"
-      }, /*#__PURE__*/React.createElement("button", {
+      }, /*#__PURE__*/React__default["default"].createElement("button", {
         type: "button",
         className: "rte-btn ".concat(activeFormatting[b.cmd] ? 'active' : ''),
         onClick: function onClick() {
           return exec(b.cmd, b.arg);
         },
         title: b.tooltip
-      }, b.icon), showTableGrid && /*#__PURE__*/React.createElement("div", {
+      }, b.icon), showTableGrid && /*#__PURE__*/React__default["default"].createElement("div", {
         className: "table-grid-popup",
         onMouseLeave: function onMouseLeave() {
           return setShowTableGrid(false);
         }
       }, _toConsumableArray(Array(10)).map(function (_, r) {
-        return /*#__PURE__*/React.createElement("div", {
+        return /*#__PURE__*/React__default["default"].createElement("div", {
           key: r,
           className: "grid-row"
         }, _toConsumableArray(Array(10)).map(function (_, c) {
           var active = r < gridSize.rows && c < gridSize.cols;
-          return /*#__PURE__*/React.createElement("div", {
+          return /*#__PURE__*/React__default["default"].createElement("div", {
             key: c,
             className: "grid-cell ".concat(active ? "active" : ""),
             onMouseEnter: function onMouseEnter() {
@@ -16443,27 +16451,27 @@ function Editor(_ref3) {
             }
           });
         }));
-      }), /*#__PURE__*/React.createElement("div", {
+      }), /*#__PURE__*/React__default["default"].createElement("div", {
         className: "grid-size-label"
       }, gridSize.rows, " \xD7 ", gridSize.cols)));
     }
     if (b.cmd === "insertEmoji") {
-      return /*#__PURE__*/React.createElement("div", {
+      return /*#__PURE__*/React__default["default"].createElement("div", {
         key: i,
         className: "emoji-wrapper",
         onMouseLeave: function onMouseLeave() {
           return setShowEmojiPicker(false);
         }
-      }, /*#__PURE__*/React.createElement("button", {
+      }, /*#__PURE__*/React__default["default"].createElement("button", {
         type: "button",
         className: "rte-btn ".concat(activeFormatting[b.cmd] ? 'active' : ''),
         onClick: function onClick() {
           return exec(b.cmd, b.arg);
         },
         title: b.tooltip
-      }, b.icon), showEmojiPicker && /*#__PURE__*/React.createElement("div", {
+      }, b.icon), showEmojiPicker && /*#__PURE__*/React__default["default"].createElement("div", {
         className: "emoji-picker-popup"
-      }, /*#__PURE__*/React.createElement(EmojiPicker$1, {
+      }, /*#__PURE__*/React__default["default"].createElement(EmojiPicker$1, {
         theme: theme === 'dark' ? 'dark' : 'light',
         onEmojiClick: function onEmojiClick(emojiData) {
           var emoji = emojiData.emoji;
@@ -16479,7 +16487,7 @@ function Editor(_ref3) {
       })));
     }
     if (b.cmd === "search") {
-      return /*#__PURE__*/React.createElement("button", {
+      return /*#__PURE__*/React__default["default"].createElement("button", {
         key: i,
         type: "button",
         className: "rte-btn",
@@ -16487,7 +16495,7 @@ function Editor(_ref3) {
         onClick: toggleSearch
       }, b.icon);
     }
-    return /*#__PURE__*/React.createElement("button", {
+    return /*#__PURE__*/React__default["default"].createElement("button", {
       key: i,
       type: "button",
       className: "rte-btn ".concat(activeFormatting[b.cmd] ? 'active' : ''),
@@ -16499,19 +16507,19 @@ function Editor(_ref3) {
         return exec(b.cmd, b.arg);
       }
     }, b.icon);
-  }), /*#__PURE__*/React.createElement("button", {
+  }), /*#__PURE__*/React__default["default"].createElement("button", {
     type: "button",
     className: "rte-btn",
     title: theme === 'light' ? "Switch to Dark Mode" : "Switch to Light Mode",
     onClick: toggleTheme
-  }, theme === 'light' ? /*#__PURE__*/React.createElement(FaMoon, null) : /*#__PURE__*/React.createElement(FaSun, null)), /*#__PURE__*/React.createElement(TagSelector, {
+  }, theme === 'light' ? /*#__PURE__*/React__default["default"].createElement(FaMoon, null) : /*#__PURE__*/React__default["default"].createElement(FaSun, null)), /*#__PURE__*/React__default["default"].createElement(TagSelector, {
     allowedTags: allowedTags,
     setAllowedTags: setAllowedTags,
     showTagSelector: showTagSelector,
     setShowTagSelector: setShowTagSelector,
     theme: theme,
     allTags: allTags
-  }), allowedTags.includes('ul') && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
+  }), allowedTags.includes('ul') && /*#__PURE__*/React__default["default"].createElement(React__default["default"].Fragment, null, /*#__PURE__*/React__default["default"].createElement("button", {
     type: "button",
     className: "rte-btn ".concat(activeFormatting.insertUnorderedList ? 'active' : ''),
     onMouseDown: function onMouseDown(e) {
@@ -16524,7 +16532,7 @@ function Editor(_ref3) {
       exec("insertUnorderedList");
     },
     title: "insert unordered list"
-  }, /*#__PURE__*/React.createElement(FaListUl, null)), /*#__PURE__*/React.createElement(Dropdown, {
+  }, /*#__PURE__*/React__default["default"].createElement(FaListUl, null)), /*#__PURE__*/React__default["default"].createElement(Dropdown, {
     options: unorderedListOptions,
     value: null,
     onChange: function onChange(value) {
@@ -16533,7 +16541,7 @@ function Editor(_ref3) {
     placeholder: "",
     width: "100px",
     theme: theme
-  })), allowedTags.includes('ol') && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
+  })), allowedTags.includes('ol') && /*#__PURE__*/React__default["default"].createElement(React__default["default"].Fragment, null, /*#__PURE__*/React__default["default"].createElement("button", {
     type: "button",
     className: "rte-btn ".concat(activeFormatting.insertOrderedList ? 'active' : ''),
     onMouseDown: function onMouseDown(e) {
@@ -16546,7 +16554,7 @@ function Editor(_ref3) {
       exec("insertOrderedList");
     },
     title: "insert ordered list"
-  }, /*#__PURE__*/React.createElement(FaListOl, null)), /*#__PURE__*/React.createElement(Dropdown, {
+  }, /*#__PURE__*/React__default["default"].createElement(FaListOl, null)), /*#__PURE__*/React__default["default"].createElement(Dropdown, {
     options: orderedListOptions,
     value: null,
     onChange: function onChange(value) {
@@ -16555,7 +16563,7 @@ function Editor(_ref3) {
     placeholder: "",
     width: "100px",
     theme: theme
-  })), /*#__PURE__*/React.createElement("input", {
+  })), /*#__PURE__*/React__default["default"].createElement("input", {
     ref: colorInputRef,
     type: "color",
     className: "color-picker",
@@ -16566,7 +16574,7 @@ function Editor(_ref3) {
       }
       applyTextColor(e.target.value);
     }
-  }), /*#__PURE__*/React.createElement("input", {
+  }), /*#__PURE__*/React__default["default"].createElement("input", {
     ref: highlightColorRef,
     type: "color",
     className: "color-picker",
@@ -16578,7 +16586,7 @@ function Editor(_ref3) {
       document.execCommand("backColor", false, e.target.value);
       handleChange();
     }
-  }), /*#__PURE__*/React.createElement("button", {
+  }), /*#__PURE__*/React__default["default"].createElement("button", {
     type: "button",
     className: "rte-btn",
     onClick: function onClick(e) {
@@ -16589,13 +16597,13 @@ function Editor(_ref3) {
       });
     },
     title: isPreview ? "Switch to Edit Mode" : "Switch to Preview Mode"
-  }, isPreview ? /*#__PURE__*/React.createElement(FaEdit, null) : /*#__PURE__*/React.createElement(FaEye, null))), plugins.length > 0 && /*#__PURE__*/React.createElement("div", {
+  }, isPreview ? /*#__PURE__*/React__default["default"].createElement(FaEdit, null) : /*#__PURE__*/React__default["default"].createElement(FaEye, null))), plugins.length > 0 && /*#__PURE__*/React__default["default"].createElement("div", {
     className: "rte-toolbar rte-toolbar-plugins"
   }, plugins.map(function (plugin, index) {
     if (!shouldShowPlugin(plugin)) {
       return null;
     }
-    return /*#__PURE__*/React.createElement("button", {
+    return /*#__PURE__*/React__default["default"].createElement("button", {
       key: index,
       type: "button",
       className: "rte-btn",
@@ -16607,9 +16615,9 @@ function Editor(_ref3) {
         return handlePluginAction(plugin);
       }
     }, typeof plugin.icon === 'string' ? plugin.icon : plugin.icon);
-  })), showSearch && /*#__PURE__*/React.createElement("div", {
+  })), showSearch && /*#__PURE__*/React__default["default"].createElement("div", {
     className: "search-bar"
-  }, /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React__default["default"].createElement("input", {
     type: "text",
     className: "search-input",
     value: searchQuery,
@@ -16617,25 +16625,25 @@ function Editor(_ref3) {
       return handleSearch(e.target.value);
     },
     placeholder: "Search in document..."
-  }), searchCount > 0 && /*#__PURE__*/React.createElement("span", {
+  }), searchCount > 0 && /*#__PURE__*/React__default["default"].createElement("span", {
     className: "search-info"
-  }, currentSearchIndex + 1, " of ", searchCount), searchCount === 0 && searchQuery && /*#__PURE__*/React.createElement("span", {
+  }, currentSearchIndex + 1, " of ", searchCount), searchCount === 0 && searchQuery && /*#__PURE__*/React__default["default"].createElement("span", {
     className: "search-info"
-  }, "No results"), /*#__PURE__*/React.createElement("button", {
+  }, "No results"), /*#__PURE__*/React__default["default"].createElement("button", {
     className: "search-btn",
     onClick: goToPrevMatch,
     disabled: searchCount === 0,
     title: "Previous match"
-  }, /*#__PURE__*/React.createElement(FaChevronUp, null)), /*#__PURE__*/React.createElement("button", {
+  }, /*#__PURE__*/React__default["default"].createElement(FaChevronUp, null)), /*#__PURE__*/React__default["default"].createElement("button", {
     className: "search-btn",
     onClick: goToNextMatch,
     disabled: searchCount === 0,
     title: "Next match"
-  }, /*#__PURE__*/React.createElement(FaChevronDown, null)), /*#__PURE__*/React.createElement("button", {
+  }, /*#__PURE__*/React__default["default"].createElement(FaChevronDown, null)), /*#__PURE__*/React__default["default"].createElement("button", {
     className: "search-btn close-btn",
     onClick: toggleSearch,
     title: "Close search"
-  }, /*#__PURE__*/React.createElement(FaTimes, null))), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React__default["default"].createElement(FaTimes, null))), /*#__PURE__*/React__default["default"].createElement("input", {
     ref: fileRef,
     type: "file",
     accept: "image/*",
@@ -16643,7 +16651,7 @@ function Editor(_ref3) {
       display: "none"
     },
     onChange: handleFileChange
-  }), !isPreview ? /*#__PURE__*/React.createElement("div", {
+  }), !isPreview ? /*#__PURE__*/React__default["default"].createElement("div", {
     ref: editorRef,
     className: "rte-editor",
     contentEditable: true,
@@ -16655,14 +16663,15 @@ function Editor(_ref3) {
     onBlur: function onBlur() {
       return setFocused(false);
     }
-  }) : /*#__PURE__*/React.createElement("div", {
+  }) : /*#__PURE__*/React__default["default"].createElement("div", {
     className: "rte-preview"
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React__default["default"].createElement("div", {
     dangerouslySetInnerHTML: {
       __html: previewContent ? sanitizeHTML(previewContent, allowedTags) : ""
     }
   })));
 }
 
-export { Editor, Editor as default };
-//# sourceMappingURL=react-richtext-editor.esm.js.map
+exports.Editor = Editor;
+exports["default"] = Editor;
+//# sourceMappingURL=react-advanced-richtext-editor.cjs.js.map

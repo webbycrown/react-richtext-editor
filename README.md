@@ -1,5 +1,5 @@
 
-# 📦 React Richtext Editor - React Component
+# 📦 React Advanced Richtext Editor - React Component
 
 A powerful, feature-rich, and customizable react richtext editor built for React applications. This editor provides a wide range of formatting options, plugin support, and security features including HTML sanitization.
 
@@ -10,13 +10,13 @@ A powerful, feature-rich, and customizable react richtext editor built for React
 Install the package using npm or yarn:
 
 ```bash
-npm install react-richtext-editor
+npm install @webbycrown/react-advanced-richtext-editor
 ```
 
 or
 
 ```bash
-yarn add react-richtext-editor
+yarn add @webbycrown/react-advanced-richtext-editor
 ```
 
 ---
@@ -25,8 +25,8 @@ yarn add react-richtext-editor
 
 ```jsx
 import React, { useState } from 'react';
-import Editor from 'react-richtext-editor';
-import 'react-richtext-editor/dist/styles.css';
+import Editor from '@webbycrown/react-advanced-richtext-editor';
+import '@webbycrown/react-advanced-richtext-editor/dist/styles.css';
 
 function App() {
   const [content, setContent] = useState('');
@@ -55,8 +55,8 @@ The editor is a controlled component that requires `value` and `onChange` props:
 
 ```jsx
 import React, { useState } from 'react';
-import Editor from 'react-richtext-editor';
-import 'react-richtext-editor/dist/styles.css';
+import Editor from '@webbycrown/react-advanced-richtext-editor';
+import '@webbycrown/react-advanced-richtext-editor/dist/styles.css';
 
 function MyComponent() {
   const [content, setContent] = useState('');
@@ -353,8 +353,8 @@ The theme is automatically managed by the editor. Users can toggle between light
 
 ```jsx
 import React, { useState } from 'react';
-import Editor from 'react-richtext-editor';
-import 'react-richtext-editor/dist/styles.css';
+import Editor from '@webbycrown/react-advanced-richtext-editor';
+import '@webbycrown/react-advanced-richtext-editor/dist/styles.css';
 
 function BasicEditor() {
   const [content, setContent] = useState('');
@@ -381,8 +381,8 @@ function BasicEditor() {
 
 ```jsx
 import React, { useState } from 'react';
-import Editor from 'react-richtext-editor';
-import 'react-richtext-editor/dist/styles.css';
+import Editor from '@webbycrown/react-advanced-richtext-editor';
+import '@webbycrown/react-advanced-richtext-editor/dist/styles.css';
 
 function RestrictedEditor() {
   const [content, setContent] = useState('');
@@ -409,8 +409,8 @@ function RestrictedEditor() {
 
 ```jsx
 import React, { useState } from 'react';
-import Editor from 'react-richtext-editor';
-import 'react-richtext-editor/dist/styles.css';
+import Editor from '@webbycrown/react-advanced-richtext-editor';
+import '@webbycrown/react-advanced-richtext-editor/dist/styles.css';
 import { FaHighlighter, FaClock } from 'react-icons/fa';
 
 function CustomPluginEditor() {
@@ -446,8 +446,8 @@ function CustomPluginEditor() {
 
 ```jsx
 import React, { useState } from 'react';
-import Editor from 'react-richtext-editor';
-import 'react-richtext-editor/dist/styles.css';
+import Editor from '@webbycrown/react-advanced-richtext-editor';
+import '@webbycrown/react-advanced-richtext-editor/dist/styles.css';
 
 function FormWithEditor() {
   const [formData, setFormData] = useState({
